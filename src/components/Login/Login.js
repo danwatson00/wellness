@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { loginWithGoogle, logout } from '../Auth/Auth';
-import { BrowserRouter } from 'react-router-dom';
 import { rebase } from '../Base/Base.js';
 import "./Login.css";
 
 
 
 class Login extends Component {
-
 
     constructor(props) {
         super(props);
@@ -16,13 +14,14 @@ class Login extends Component {
             authed: false,
             loading: true,
             uid: null,
-            zip: '',
         }
 
         this.authenticate = this.authenticate.bind(this);
         this.logoutApp = this.logoutApp.bind(this);
 
     }
+
+    
 
     componentDidMount() {
         console.log("componentDidMount");
