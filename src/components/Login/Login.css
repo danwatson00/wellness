@@ -1,0 +1,10 @@
+.log-btn {
+    background: #EE6C4D;
+    font-size: .8em;
+    padding: 16px 20px 16px 20px;
+    cursor: pointer;
+}
+
+.log-btn:hover {
+    color: white;
+}

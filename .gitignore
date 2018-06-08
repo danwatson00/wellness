@@ -22,4 +22,6 @@ yarn-error.log*
 
 package-lock.json
 
+/src/components/Base/Base.js
+
 
