@@ -2,6 +2,9 @@ import React from 'react';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import hamburger from '../../img/hamburger.png';
 import './Menu.css';
+import { Link } from 'react-router-dom';
+
+import * as routes from '../../constants/routes';
 
 export default class MENU extends React.Component {
     constructor(props) {
@@ -28,11 +31,10 @@ export default class MENU extends React.Component {
                     <div className="menuText">MENU</div>
                 </DropdownToggle>
                 <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
-                    <DropdownItem>Another Action</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>Another Action</DropdownItem>
+                    <DropdownItem><Link to={routes.LANDING}>Home</Link></DropdownItem>
+                    <DropdownItem><Link to={routes.FEELINGS}>Create Entry</Link></DropdownItem>
+                    <DropdownItem><Link to={routes.PAST}>Past Entries</Link></DropdownItem>
+                    <DropdownItem><Link to={routes.ABOUT}>About</Link></DropdownItem>
                 </DropdownMenu>
             </ButtonDropdown>
         );

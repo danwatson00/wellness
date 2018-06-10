@@ -1,8 +1,9 @@
 .log-btn {
-    background: #EE6C4D;
+    background: none !important;
     font-size: .8em;
     padding: 16px 20px 16px 20px;
     cursor: pointer;
+    border: 2px solid white !important;
 }
 
 .log-btn:hover {

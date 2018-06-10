@@ -19,20 +19,11 @@ export function loginWithGoogle() {
     return rebase.initializedApp.auth().signInWithPopup(googleProvider)
         .then((data) => {
             console.log('user data', data);
-            saveUser(data.user);
+            let user = saveUser(data.user);
+            return user;
         });
 }
 
-export function saveZip(uid, zip) {
-    console.log("save zip", zip);
-    return rebase.initializedApp.database().ref().child(`users/${uid}`)
-        .update({
-            zip: zip
-        })
-        .then(() => {
-            return uid;
-        });
-}
 
 export function saveUser(user) {
     console.log("save user", user);
@@ -40,9 +31,11 @@ export function saveUser(user) {
         .set({
             email: user.email,
             uid: user.uid,
-            zip: 37206
+            name: user.displayName,
+            photoURL: user.photoURL
         })
         .then(() => {
+            console.log("here's my user email", user.email);
             return user;
         })
 }
