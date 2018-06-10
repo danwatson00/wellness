@@ -1,0 +1,22 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Elmer Shields",
+            "email": "elmer_shields@yahoo.com",
+            "password": "123456789"
+        },
+        {
+            "email": "dallin.orn65@gmail.com",
+            "password": "fasfasdfasdf",
+            "id": 2
+        }
+    ],
+    "feelings": [
+        {
+            "id": 1,
+            "text": "Happy",
+            "icon": "../img/"
+        }
+    ]
+}

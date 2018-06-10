@@ -1,4 +1,7 @@
 .hamburger {
     background: none !important;
-    max-height: 50px;
+}
+
+.menuText {
+    font-size: .8em;
 }
