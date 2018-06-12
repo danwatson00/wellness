@@ -1,5 +1,6 @@
 .hamburger {
     background: none !important;
+    grid-column: 3;
 }
 
 .menuText {

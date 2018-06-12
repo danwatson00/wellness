@@ -1,3 +1,38 @@
 /* .createEntryBtn {
     
 } */
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 90px 50px;;
+    margin-bottom: 2em;
+    
+}
+
+.logo {
+    grid-column: 1;
+    align-self: center;
+    justify-self: start;
+    max-height: 30px;
+}
+
+.btn-group {
+    grid-column: 3;
+    align-self: center;
+    justify-self: stretch;
+    max-height: 50px;
+}
+
+.log-btn {
+    grid-column: 2;
+    color: white;
+    background: #EF5C5F !important;
+    font-size: .8em;
+    cursor: pointer;
+    justify-self: stretch;
+    align-self: stretch !important;
+}
+
+.log-btn:hover {
+    border: 1px solid white !important;
+}

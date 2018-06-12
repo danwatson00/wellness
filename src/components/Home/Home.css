@@ -3,3 +3,7 @@
     border: 2px solid white;
     max-width: 80px;
 }
+
+.welcomeHeading h1, .welcomeHeading h2 {
+    color: white !important;
+}
