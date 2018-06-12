@@ -1,47 +1,53 @@
 import React, { Component } from 'react';
 import "./Feelings.css";
-import BuildIconCol from '../BuildIconCol/BuildIconCol';
+import FeelingsCard from '../FeelingsCard/FeelingsCard';
 
-
-//These are the basic feelings that will load if the user has no saved feelings
-const basicFeelings = [
-    {text:"Great!", icon:"/img/icons/white/happiness.png"},
-    {text: "Meh..", icon: "/img/icons/white/013-meh.png"},
-    {text: "Bad", icon: "/img/icons/white/009-sad-1.png" }
-    ]
 class Feelings extends Component {
-
+    
     state = {
-        authed: this.props.authed, 
-        uid: this.props.uid,
-        name: this.props.displayName,
-        photoURL: this.props.photoURL,
-        feelings: this.props.feelings,
-        activities: this.props.activities,
-        descriptives: this.props.descriptives,
-        sleep: this.props.sleep,
-        meds: this.props.meds,
-        diet: this.props.diet,
-        foods: this.props.foods,
-        physical: this.props.physical
-        }
-    
-    
-
-
-    loadFeelings = (feelings) => {
-        
-
+        user: this.props.user
     }
 
+    //checks if there is a user in localStorage. If there is, it is saved as storedUser, parsed and passed into loadFeelings function
+    componentDidMount() {
+        const storedUser = localStorage.getItem('user')
+        if (storedUser) {
+            const storedUserObj = JSON.parse(storedUser)
+            console.log("storedUserObj uid", storedUserObj.user.uid)
+            this.loadFeelings(storedUserObj.user.uid)
+        }else{
+            console.log("no user")
+        }
+    }
+    
+    //This function 
+    loadFeelings = (uid) => {
+        console.log("loadfeelings uid", uid)
+        fetch(`https://wellness-wat01.firebaseio.com/users/${uid}/feelings.json`)
+        .then((data) => {
+            return data.json()
+        }).then((userFeelings)=>{
+            this.setState({
+                feelings: userFeelings
+            })
+            console.log("userFeelings", userFeelings)
+        })
+    
+    }
+    
     render() {
+        console.log("render user feelings", this.state.feelings);
+       
         return (
-            <div className="feelings">
-               
-
+            <div className="feelingsDiv">
+                <h2>How are you feeling today?</h2>
+                <FeelingsCard feelings={this.state.feelings} />
             </div>
+
         );
+        
     }
 }
+
 
 export default Feelings;
