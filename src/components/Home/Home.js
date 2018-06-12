@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import './Home.css';
 import Feelings from '../Feelings/Feelings';
+import { Route, Link } from 'react-router-dom';
+
+import * as routes from '../../constants/routes';
 
 class Home extends Component {
     
@@ -24,11 +27,20 @@ class Home extends Component {
         render(){
             return( 
                 <div>
-                    <h1>Welcome to your Wellness Tracker, {this.props.user.name}! </h1>
-                    <img src={this.props.user.photoURL} alt="user" className="profilePic"></img>
+                    <div className="welcomeHeading">
+                        <h1>Hello, {this.props.user.name}!</h1>
+                        <h2>Welcome to your Wellness Tracker</h2>
+                        <img src={this.props.user.photoURL} alt="user" className="profilePic"></img>
+                    </div>
                     <p>Create an entry or view past entries by clicking on the buttons below.</p>
-                    <Button className="btn-lg createEntryBtn" outline color="light">Create An Entry</Button>
+                    <Link to={`/feelings`} className="feelingsLink"><Button className="btn-lg createEntryBtn" outline color="light">Create An Entry</Button></Link>
                     <Button className="btn-lg pastEntriesBtn" outline color="light">View Past Entries</Button>
+
+                    <Route
+                        exact path={routes.FEELINGS}
+                        component={() => <Feelings user={this.state.user} />}
+                    />
+
                 </div>
             );
         }
