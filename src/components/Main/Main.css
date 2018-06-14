@@ -1,38 +1,66 @@
-/* .createEntryBtn {
-    
-} */
+@import url('https://fonts.googleapis.com/css?family=Roboto:100');
+
+
+.mainContainer {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
 
 .header {
     display: grid;
-    grid-template-columns: 1fr 90px 50px;;
-    margin-bottom: 2em;
+    grid-template-columns: 1fr  auto auto auto;
+    margin: .25em 0 2em 0;
     
+}
+
+.btn-group {
+    grid-column: 4;
+    align-self: center;
+    justify-self: stretch;
+    max-height: 50px;
+    border: none !important;
+}
+
+.profilePic {
+    grid-column: 3;
+    justify-self: center;
+    align-self: center !important;
+    width: 40px;
+    margin: 0 10px 0 10px;
+}
+.userIcon {
+    grid-column: 3;
+    justify-self: center;
+    align-self: center !important;
+    width: 40px;
+    margin: 0 10px 0 10px;
+}
+
+.logout-btn {
+    grid-column: 2;
+    color: white !important;
+    background: #EF5C5F !important;
+    font-size: .6em !important;
+    cursor: pointer;
+    justify-self: center;
+    align-self: center;
+    margin: 0 10px 0 10px;
+}
+
+.log-btn:hover {
+    border: 1px solid white !important;
+}
+
+.log-btn {
+    color: white;
+    background: #EF5C5F !important;
+    font-size: .8em;
+    cursor: pointer;
 }
 
 .logo {
     grid-column: 1;
     align-self: center;
     justify-self: start;
-    max-height: 30px;
-}
-
-.btn-group {
-    grid-column: 3;
-    align-self: center;
-    justify-self: stretch;
-    max-height: 50px;
-}
-
-.log-btn {
-    grid-column: 2;
-    color: white;
-    background: #EF5C5F !important;
-    font-size: .8em;
-    cursor: pointer;
-    justify-self: stretch;
-    align-self: stretch !important;
-}
-
-.log-btn:hover {
-    border: 1px solid white !important;
+    max-height: 25px;
 }

@@ -1,0 +1,12 @@
+.feelingCard h3 {
+    margin: 2px 20px 20px 20px !important;
+    color: white;
+}
+
+.feelingIcon {
+    max-width: 80px;
+}
+
+.feelingsDiv {
+    cursor: pointer;
+}

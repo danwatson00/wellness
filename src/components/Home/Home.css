@@ -7,3 +7,9 @@
 .welcomeHeading h1, .welcomeHeading h2 {
     color: white !important;
 }
+
+.pastEntriesBtn, .createEntryBtn {
+    display: block !important;
+    margin: 20px auto;
+}
+
