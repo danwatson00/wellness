@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import Footer from '../Footer/Footer';
+import './Journal.css';
 
 export default class Journal extends React.Component {
 
@@ -9,10 +10,10 @@ export default class Journal extends React.Component {
         return (
             <Form>
                 <FormGroup>
-                    <Label for="exampleText">Text Area</Label>
+                    <Label for="exampleText">Journal Entry</Label>
                     <Input type="textarea" name="text" id="exampleText" />
                 </FormGroup>
-                <Link><Button>Submit</Button></Link>
+                <Button className="completeButton">Complete</Button>
             </Form>
         );
     }

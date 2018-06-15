@@ -1,33 +1,6 @@
 import React, { Component } from 'react';
-import Footer from '../../
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Footer/Footer'
+import Footer from '../Footer/Footer';
 import "./Feelings.css";
-import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
-
-import * as routes from '../../constants/routes';
 
 class Feelings extends Component {
     

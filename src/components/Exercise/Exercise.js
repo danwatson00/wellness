@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import "./Exercise.css";
-import { Link } from 'react-router-dom';
-// import Activities from '../Activities/Activities';
 import { Button } from 'reactstrap';
+import BigButtonSelect from '../BigButtonSelect/BigButtonSelect';
+import Footer from '../Footer/Footer';
 
 
 import * as routes from '../../constants/routes';
@@ -22,18 +22,13 @@ class Exercise extends Component {
             <div className="exerciseDiv">
                 <h3>In the last 24 hours...</h3>
                 <h3>How physically active have you been?</h3>
-                <div className="ExerciseCardsDiv">
-                    {userExercise}
-                </div>
-                <Link to={`/activities`} className="backLink float-left">Back</Link>
-                <Link to={`/sleep`}><Button className="exSubmitBtn float-right">Next</Button></Link>
-
+                <BigButtonSelect items={this.props.user.exercise} />
+                <Footer next="sleep" />
             </div>
 
         );
 
     }
 }
-
 
 export default Exercise;

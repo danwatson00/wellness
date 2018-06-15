@@ -13,7 +13,8 @@ export const DIET = '/diet';
 export const SLEEP = '/sleep';
 export const FOOD = '/food';
 export const MEDICATIONS = '/medications';
-export const JOURNAL = './journal';
-export const EDIT = './edit';
-
+export const JOURNAL = '/journal';
+export const EDIT = '/edit';
+export const EDITITEM = '/editItem';
+export const EDITICONITEM = '/editIconItem';
 

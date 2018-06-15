@@ -1,35 +1,40 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
+import './Footer.css'
 
 class Footer extends Component {
 
     constructor(props) {
-        super(props);
-        this.goBack = this.goBack.bind(this); // i think you are missing this
+        super(props)
+        this.goBack = this.goBack.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+
+        this.state = {
+            justClicked: this.props.edit
+        }
+    }
+    
+    handleClick = () => {
+        this.setState({ justClicked: this.props.edit })
+        console.log("clickity", this.state.justClicked)
     }
 
     goBack() {
-        this.props.history.goBack();
+    this.props.history.goBack()
     }
+    
 
     render() {
 
-
         return (
             <div className="footerDiv">
-                <div>
-                    <Button onClick={this.goBack}>Back</Button>
-                    <Link to={'/'}><Button className="editButton">Edit</Button></Link>
-                    <Link to={`/${next}`}><Button className="submitBtn float-right">Next</Button></Link>
-                </div>
-                <div>
-                    <p className="copyright" >Copyright &#169; 2018 Dan Watson, 2018</p>
-                </div>
+                <div className="backBtn" onClick={this.goBack}>Back</div>
+                <Link className="editBtnLink" to={'/edit'}><div onClick={this.handleClick} className="editBtn">Edit</div></Link>
+                <Link className="nextBtnLink" to={`/${this.props.next}`}><div className="nextBtn">Next</div></Link>
+                <sm className="copyright" >Copyright &#169; 2018 Dan Watson</sm>
             </div>
-
         );
-
     }
 }
 

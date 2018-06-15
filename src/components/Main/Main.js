@@ -17,8 +17,9 @@ import Food from '../Food/Food';
 import Meds from '../Meds/Meds';
 import { Button } from 'semantic-ui-react';
 import Journal from '../Journal/Journal';
-import WordSelect from '../WordSelect/WordSelect';
 import EditItems from '../EditItems/EditItems';
+import EditItem from '../EditItem/EditItem';
+
 
 import * as routes from '../../constants/routes';
 
@@ -150,6 +151,16 @@ class Main extends Component {
                                 exact path={routes.HOME}
                                 component={() => <Home user={this.state.user} />}
                             />
+
+                            <Route
+                                exact path={routes.EDIT}
+                                component={() => <EditItems edit={this.state.justClicked} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDITITEM}
+                                component={() => <EditItem user={this.state.user} />}
+                            />
                             
                             <Route
                                 exact path={routes.FEELINGS}
@@ -157,7 +168,7 @@ class Main extends Component {
                             />
                             <Route
                                 exact path={routes.DESCRIPTIVES}
-                                component={() => <WordSelect items={this.state.user.descriptives} />}
+                                component={() => <Descriptives user={this.state.user} />}
                             />
                             <Route
                                 exact path={routes.ACTIVITIES}
