@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
 import './Footer.css'
 
 class Footer extends Component {
@@ -11,7 +10,7 @@ class Footer extends Component {
         this.handleClick = this.handleClick.bind(this)
 
         this.state = {
-            justClicked: this.props.edit
+            justClicked: null
         }
     }
     
@@ -26,13 +25,13 @@ class Footer extends Component {
     
 
     render() {
-
+        console.log("route", this.props.route)
         return (
             <div className="footerDiv">
                 <div className="backBtn" onClick={this.goBack}>Back</div>
-                <Link className="editBtnLink" to={'/edit'}><div onClick={this.handleClick} className="editBtn">Edit</div></Link>
-                <Link className="nextBtnLink" to={`/${this.props.next}`}><div className="nextBtn">Next</div></Link>
-                <sm className="copyright" >Copyright &#169; 2018 Dan Watson</sm>
+                <Link className="editBtnLink" to={this.props.route}><div onClick={this.handleClick} className="editBtn">Edit</div></Link>
+                <Link className="nextBtnLink" to={`/${this.props.next}`}><div className="nextBtn">Save &#38; Next</div></Link>
+                <p className="copyright" >Copyright &#169; 2018 Dan Watson</p>
             </div>
         );
     }

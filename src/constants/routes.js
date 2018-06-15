@@ -14,7 +14,15 @@ export const SLEEP = '/sleep';
 export const FOOD = '/food';
 export const MEDICATIONS = '/medications';
 export const JOURNAL = '/journal';
-export const EDIT = '/edit';
-export const EDITITEM = '/editItem';
-export const EDITICONITEM = '/editIconItem';
+export const EDIT_ITEM = '/editItem';
+export const EDIT_ACTIVITIES = '/activities/edit';
+export const EDIT_DESCRIPTIVES = '/descriptives/edit';
+export const EDIT_DIET = '/diet/edit';
+export const EDIT_EXERCISE = '/exercise/edit';
+export const EDIT_FEELINGS = '/feelings/edit';
+export const EDIT_FOOD = '/food/edit';
+export const EDIT_MEDS = '/meds/edit';
+export const EDIT_SLEEP = '/sleep/edit';
+
+
 

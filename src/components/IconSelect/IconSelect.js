@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './IconSelect.css';
 
-
-import * as routes from '../../constants/routes';
-
 class IconSelect extends Component {
 
 

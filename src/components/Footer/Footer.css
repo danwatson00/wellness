@@ -2,7 +2,7 @@
     border-top: 1px solid white;
     padding-top: 7px;
     display: grid;
-    grid-template-columns: 1fr 40px 50px;
+    grid-template-columns: 1fr 40px 90px;
     grid-template-rows: 1fr 1fr;
 }
 

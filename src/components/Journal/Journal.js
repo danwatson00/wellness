@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import Footer from '../Footer/Footer';
 import './Journal.css';
 
 export default class Journal extends React.Component {

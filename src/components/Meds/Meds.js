@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import "./Meds.css";
-import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import Footer from '../Footer/Footer';
+
+import * as routes from '../../constants/routes';
 
 class Meds extends Component {
 
@@ -19,7 +20,7 @@ class Meds extends Component {
                 <div className="MedsCardsDiv">
                     {userMeds}
                 </div>
-                <Footer next="journal" />
+                <Footer edit={this.props.user.meds} route={routes.EDIT_MEDS} next="journal" />
             </div>
 
         );

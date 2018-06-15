@@ -5,7 +5,7 @@ import Menu from '../Menu/Menu';
 import logo from '../../img/logo.png';
 import userIcon from '../../img/user.png';
 import Welcome from '../Welcome/Welcome';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './Main.css';
 import Descriptives from '../Descriptives/Descriptives';
 import Activities from '../Activities/Activities';
@@ -50,7 +50,9 @@ class Main extends Component {
                 user: storedUserObj.user
             })
         } 
+        
     }
+
      
 
     // componentWillUnmount() {
@@ -130,6 +132,9 @@ class Main extends Component {
 
 
     render() {
+
+        console.log("main user", this.state.user)
+
         return (
             <div className="main">
                 <div>
@@ -144,21 +149,58 @@ class Main extends Component {
                                 </div>
                                 <img src={this.state.user.photoURL} alt="user" className="profilePic"></img>
                                 <Menu />
+                               
+        
                             </div>
                     
-
+                            <Switch>
                             <Route 
                                 exact path={routes.HOME}
                                 component={() => <Home user={this.state.user} />}
                             />
 
                             <Route
-                                exact path={routes.EDIT}
-                                component={() => <EditItems edit={this.state.justClicked} />}
+                                exact path={routes.EDIT_FEELINGS}
+                                component={() => <EditItems edit={this.state.user.feelings} />}
+                            />
+    
+                            <Route
+                                exact path={routes.EDIT_ACTIVITIES}
+                                component={() => <EditItems edit={this.state.user.activities} />}
                             />
 
                             <Route
-                                exact path={routes.EDITITEM}
+                                exact path={routes.EDIT_DESCRIPTIVES}
+                                component={() => <EditItems edit={this.state.user.descriptives} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_DIET}
+                                component={() => <EditItems edit={this.state.user.diet} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_EXERCISE}
+                                component={() => <EditItems edit={this.state.user.exercise} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_FOOD}
+                                component={() => <EditItems edit={this.state.user.foods} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_MEDS}
+                                component={() => <EditItems edit={this.state.user.meds} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_SLEEP}
+                                component={() => <EditItems edit={this.state.user.sleep} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_ITEM}
                                 component={() => <EditItem user={this.state.user} />}
                             />
                             
@@ -204,6 +246,7 @@ class Main extends Component {
                                 exact path={routes.JOURNAL}
                                 component={() => <Journal user={this.state.user} />}
                             />
+                    </Switch>
 
                         </div>
 

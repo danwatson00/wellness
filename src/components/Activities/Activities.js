@@ -8,11 +8,12 @@ import * as routes from '../../constants/routes';
 class Activities extends Component {
 
     render() {
+        console.log("activities user", this.props.user.activities)
         return (
             <div className="activitiesDiv">
                 <h2>What have you been up to today?</h2>
                 <IconSelect items={this.props.user.activities} />
-                <Footer edit={this.props.user.activities} next="exercise" />
+                <Footer edit={this.props.user.activites} route={routes.EDIT_ACTIVITIES} next="exercise" />
             </div>
         );
 

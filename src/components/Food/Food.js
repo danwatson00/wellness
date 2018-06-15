@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
 import './Food.css';
 import Footer from '../Footer/Footer';
 import IconSelect from '../IconSelect/IconSelect';
+
+import * as routes from '../../constants/routes';
 
 class Food extends Component {
 
@@ -13,7 +13,7 @@ class Food extends Component {
             <div className="FoodDiv">
                 <h2>What have you eaten today?</h2>
                 <IconSelect items={this.props.user.foods} />
-                <Footer next="medications" />
+                <Footer edit={this.props.user.foods} route={routes.EDIT_FOOD} next="medications" />
             </div>
 
         );

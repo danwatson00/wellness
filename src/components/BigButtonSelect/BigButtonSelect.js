@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import "./BigButtonSelect.css";
-import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
-
-import * as routes from '../../constants/routes';
 
 class BigButtonSelect extends Component {
 

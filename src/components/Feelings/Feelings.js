@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Footer from '../Footer/Footer';
 import "./Feelings.css";
 
+import * as routes from '../../constants/routes';
+
 class Feelings extends Component {
     
     
@@ -22,7 +24,7 @@ class Feelings extends Component {
                 <div className="feelingCardDiv">
                     {userFeelings}
                 </div>
-                <Footer next="descriptives" />
+                <Footer edit={this.props.user.feelings} route={routes.EDIT_FEELINGS} next="descriptives" />
             </div>
 
         );
