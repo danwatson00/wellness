@@ -1,8 +1,14 @@
-.hamburger {
+.hamburgerDiv {
     background: none !important;
-    grid-column: 3;
+    grid-column: 4;
 }
 
 .menuText {
     font-size: .8em;
+}
+
+.hamburger {
+    justify-self: center;
+    align-self: center !important;
+    width: 30px;
 }

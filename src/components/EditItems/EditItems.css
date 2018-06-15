@@ -1,0 +1,54 @@
+
+
+.iconEditCard, .medsEditCard, .wordEditCard {
+    display: grid;
+    grid-template-rows: 1fr;
+    height: 40px;
+    justify-items: center;
+    align-items: center;
+    border-top: 1px solid white;
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
+
+.iconEditCard, .medsEditCard {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 40px;
+}
+
+.medsEditCard {
+    border-bottom: 1px solid white;
+}
+
+.wordEditCard {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.iconSelectIcon {
+    grid-column: 1;
+    max-height: 30px;
+}
+
+.editItemH4 {
+    grid-column: 2;
+    margin: 0;
+    align-self: center;
+}
+
+.deleteBtn {
+    grid-column: 3;
+}
+
+.editBtn {
+    grid-column: 4;
+}
+
+.addNewBtn {
+    margin-top: 20px !important;
+}
+
+.editItemsIntro {
+    margin-bottom: 30px;
+}
+
+

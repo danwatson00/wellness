@@ -1,0 +1,10 @@
+
+.wordSelectButton {
+    
+    color: white !important;
+}
+
+.wordSelectBtnDiv {
+    display: inline-block;
+    margin: 5px 5px 5px 5px !important;
+}

@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import { loginWithGoogle, logout } from '../Auth/Auth';
-import { rebase } from '../Base/Base.js';
 import Home from '../Home/Home';
 import Menu from '../Menu/Menu';
 import logo from '../../img/logo.png';
+import userIcon from '../../img/user.png';
 import Welcome from '../Welcome/Welcome';
-import Feelings from '../Feelings/Feelings';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './Main.css';
+import Descriptives from '../Descriptives/Descriptives';
+import Activities from '../Activities/Activities';
+import Feelings from '../Feelings/Feelings';
+import Exercise from '../Exercise/Exercise';
+import Diet from '../Diet/Diet';
+import Sleep from '../Sleep/Sleep';
+import Food from '../Food/Food';
+import Meds from '../Meds/Meds';
+import { Button } from 'semantic-ui-react';
+import Journal from '../Journal/Journal';
+import EditItems from '../EditItems/EditItems';
+import EditItem from '../EditItem/EditItem';
+
 
 import * as routes from '../../constants/routes';
 
@@ -38,7 +50,9 @@ class Main extends Component {
                 user: storedUserObj.user
             })
         } 
+        
     }
+
      
 
     // componentWillUnmount() {
@@ -60,23 +74,22 @@ class Main extends Component {
                     uid: user.uid,
                     //if no existing feelings, canned feelings are given
                     feelings: user.feelings || [
-                        { "text": "Happy", "level": 10, "icon": "happyIcon" },
-                        { "text": "Meh..", "level": 5, "icon": "mehIcon" },
-                        { "text": "Sad", "level": 1, "icon": "sadIcon" }
+                        { "text": "Happy", "level": 10, "icon": "happiness" },
+                        { "text": "Meh..", "level": 5, "icon": "013-meh" },
+                        { "text": "Sad", "level": 1, "icon": "009-sad-1" }
                     ],
                     activities: user.activities || [
-                        { "text": "Working", "icon": "/icons/white/happiness.png" },
-                        { "text": "Cleaning", "icon": "/icons/white/happiness.png" },
-                        { "text": "Yoga", "icon": "/icons/white/028-yoga.png" },
-                        { "text": "Exercising", "icon": "/icons/white/040-strength.png" },
-                        { "text": "Mountain Climbing", "icon": "/icons/white/climbing-with-rope.png" },
-                        { "text": "Biking", "icon": "/icons/white/bicycle-rider.png" },
-                        { "text": "Hiking", "icon": "/icons/white/hiking.png" },
-                        { "text": "Camping", "icon": "/icons/white/camping.png" },
-                        { "text": "Bowling", "icon": "/icons/white/bowling.png" },
-                        { "text": "Fishing", "icon": "/icons/white/fishing-man.png" },
-                        { "text": "Cleaning", "icon": "/icons/white/cleaning.png" },
-                        { "text": "Photography", "icon": "/icons/white/038-camera.png" },
+                        { "text": "Skateboarding", "icon": "boy-with-skatingboard" },
+                        { "text": "Yoga", "icon": "028-yoga" },
+                        { "text": "Exercising", "icon": "040-strength" },
+                        { "text": "Mountain Climbing", "icon": "climbing-with-rope" },
+                        { "text": "Biking", "icon": "bicycle-rider" },
+                        { "text": "Hiking", "icon": "hiking" },
+                        { "text": "Camping", "icon": "camping" },
+                        { "text": "Bowling", "icon": "bowling" },
+                        { "text": "Fishing", "icon": "fishing-man" },
+                        { "text": "Cleaning", "icon": "cleaning" },
+                        { "text": "Photography", "icon": "038-camera" },
                     ],
                     descriptives: user.descriptives || ["Excited", "Scared", "Lonely", "Content", "Tired", "Exhausted", "Ill", "Happy", "Anxious", "Extatic", "Proud", "Determined", "Hopeful", "Worried"],
                     sleep: user.sleep || ["0 - 2 hours", "2 - 4 hours", "4 - 6 hours", "6 - 8 hours", "8 - 10 hours"],
@@ -87,20 +100,20 @@ class Main extends Component {
                     ],
                     diet: user.diet || ["Very Healthy", "Average", "Not Healthy"],
                     foods: user.foods || [
-                        { "text": "Tacos", "icon": "/icons/white/001-taco.png" },
-                        { "text": "Cupcakes", "icon": "/icons/white/005-cupcake.png" },
-                        { "text": "Pizza", "icon": "/icons/white/017-pizza.png" },
-                        { "text": "Noodles", "icon": "/icons/white/020-noodles.png" },
-                        { "text": "Pancakes", "icon": "/icons/white/018-pancakes.png" },
-                        { "text": "Burger", "icon": "/icons/white/045-burger-2.png" },
-                        { "text": "Veggie Burger", "icon": "/icons/white/046-burger-1.png" },
-                        { "text": "Ice Cream", "icon": "/icons/white/046-ice-cream.png" },
-                        { "text": "Rice", "icon": "/icons/white/rice.png" },
-                        { "text": "Salad", "icon": "/icons/white/salad.png" },
-                        { "text": "Bacon and Eggs", "icon": "/icons/white/032-eggs-and-bacon.png" },
-                        { "text": "Beer", "icon": "/icons/white/039-beer.png" },
+                        { "text": "Tacos", "icon": "001-taco" },
+                        { "text": "Cupcakes", "icon": "005-cupcake" },
+                        { "text": "Pizza", "icon": "017-pizza" },
+                        { "text": "Noodles", "icon": "020-noodles" },
+                        { "text": "Pancakes", "icon": "018-pancakes" },
+                        { "text": "Burger", "icon": "045-burger-2" },
+                        { "text": "Veggie Burger", "icon": "046-burger-1" },
+                        { "text": "Ice Cream", "icon": "046-ice-cream" },
+                        { "text": "Rice", "icon": "rice" },
+                        { "text": "Salad", "icon": "salad" },
+                        { "text": "Bacon and Eggs", "icon": "032-egg-and-bacon" },
+                        { "text": "Beer", "icon": "039-beer" },
                     ],
-                    physical: user.physical || ["Very Active", "SomewhatActive", "Not Active"]
+                    exercise: user.exercise || ["Very Active", "SomewhatActive", "Not Active"]
                 }
             })
             //This passes the values in state to local storage
@@ -119,23 +132,122 @@ class Main extends Component {
 
 
     render() {
+
+        console.log("main user", this.state.user)
+
         return (
             <div className="main">
                 <div>
                     {this.state.authed
                         ?
 
-                        <div className="container">
+                        <div className="container mainContainer">
                             <div className="header">
                                 <img src={logo} className="logo" alt="logo"></img>
                                 <div className="d-flex flex-column justify-content-center text-center">
-                                    <button type="button" onClick={() => this.logoutApp('google')} className="logout-btn log-btn btn btn-secondary">LOGOUT</button>
+                                    <Button type="button" onClick={() => this.logoutApp('google')} circular className="logout-btn">LOGOUT</Button>
                                 </div>
+                                <img src={this.state.user.photoURL} alt="user" className="profilePic"></img>
                                 <Menu />
+                               
+        
                             </div>
+                    
+                            <Switch>
+                            <Route 
+                                exact path={routes.HOME}
+                                component={() => <Home user={this.state.user} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_FEELINGS}
+                                component={() => <EditItems edit={this.state.user.feelings} />}
+                            />
+    
+                            <Route
+                                exact path={routes.EDIT_ACTIVITIES}
+                                component={() => <EditItems edit={this.state.user.activities} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_DESCRIPTIVES}
+                                component={() => <EditItems edit={this.state.user.descriptives} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_DIET}
+                                component={() => <EditItems edit={this.state.user.diet} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_EXERCISE}
+                                component={() => <EditItems edit={this.state.user.exercise} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_FOOD}
+                                component={() => <EditItems edit={this.state.user.foods} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_MEDS}
+                                component={() => <EditItems edit={this.state.user.meds} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_SLEEP}
+                                component={() => <EditItems edit={this.state.user.sleep} />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_ITEM}
+                                component={() => <EditItem user={this.state.user} />}
+                            />
                             
-                            <Home user={this.state.user} />
+                            <Route
+                                exact path={routes.FEELINGS}
+                                component={() => <Feelings user={this.state.user} />}
+                            />
+                            <Route
+                                exact path={routes.DESCRIPTIVES}
+                                component={() => <Descriptives user={this.state.user} />}
+                            />
+                            <Route
+                                exact path={routes.ACTIVITIES}
+                                component={() => <Activities user={this.state.user} />}
+                            />
+
+                            <Route
+                                exact path={routes.EXERCISE}
+                                component={() => <Exercise user={this.state.user} />}
+                            />
+
+                            <Route
+                                exact path={routes.DIET}
+                                component={() => <Diet user={this.state.user} />}
+                            />
+
+                            <Route
+                                exact path={routes.SLEEP}
+                                component={() => <Sleep user={this.state.user} />}
+                            />
+
+                            <Route
+                                exact path={routes.FOOD}
+                                component={() => <Food user={this.state.user} />}
+                            />
                             
+                            <Route
+                                exact path={routes.MEDICATIONS}
+                                component={() => <Meds user={this.state.user} />}
+                            />
+
+                            <Route
+                                exact path={routes.JOURNAL}
+                                component={() => <Journal user={this.state.user} />}
+                            />
+                    </Switch>
+
                         </div>
 
                         :
@@ -143,7 +255,7 @@ class Main extends Component {
                         <div className="container">
                             <div className="header">
                                 <img src={logo} className="logo" alt="logo"></img>
-                                
+                                <img src={userIcon} className="userIcon" alt="user icon"></img>
                                 <Menu />
                             </div>
                             <Welcome />

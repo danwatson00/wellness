@@ -34,23 +34,23 @@ export function saveUser(user) {
             name: user.displayName,
             photoURL: user.photoURL,
             feelings: user.feelings || [
-                { "text": "Happy", "level": 10, "icon": "happyIcon" },
-                { "text": "Meh..", "level": 5, "icon": "mehIcon" },
-                { "text": "Sad", "level": 1, "icon": "sadIcon" }
+                { "text": "Happy", "level": 10, "icon": "happiness" },
+                { "text": "Meh..", "level": 5, "icon": "013-meh" },
+                { "text": "Sad", "level": 1, "icon": "009-sad-1" }
             ],
             activities: user.activities || [
-                { "text": "Working", "icon": "/icons/white/happiness.png" },
-                { "text": "Cleaning", "icon": "/icons/white/happiness.png" },
-                { "text": "Yoga", "icon": "/icons/white/028-yoga.png" },
-                { "text": "Exercising", "icon": "/icons/white/040-strength.png" },
-                { "text": "Mountain Climbing", "icon": "/icons/white/climbing-with-rope.png" },
-                { "text": "Biking", "icon": "/icons/white/bicycle-rider.png" },
-                { "text": "Hiking", "icon": "/icons/white/hiking.png" },
-                { "text": "Camping", "icon": "/icons/white/camping.png" },
-                { "text": "Bowling", "icon": "/icons/white/bowling.png" },
-                { "text": "Fishing", "icon": "/icons/white/fishing-man.png" },
-                { "text": "Cleaning", "icon": "/icons/white/cleaning.png" },
-                { "text": "Photography", "icon": "/icons/white/038-camera.png" },
+                { "text": "Working", "icon": "happiness.png" },
+                { "text": "Cleaning", "icon": "happiness.png" },
+                { "text": "Yoga", "icon": "028-yoga.png" },
+                { "text": "Exercising", "icon": "040-strength.png" },
+                { "text": "Mountain Climbing", "icon": "climbing-with-rope.png" },
+                { "text": "Biking", "icon": "bicycle-rider.png" },
+                { "text": "Hiking", "icon": "hiking.png" },
+                { "text": "Camping", "icon": "camping.png" },
+                { "text": "Bowling", "icon": "bowling.png" },
+                { "text": "Fishing", "icon": "fishing-man.png" },
+                { "text": "Cleaning", "icon": "cleaning.png" },
+                { "text": "Photography", "icon": "038-camera.png" },
             ],
             descriptives: user.descriptives || ["Excited", "Scared", "Lonely", "Content", "Tired", "Exhausted", "Ill", "Happy", "Anxious", "Extatic", "Proud", "Determined", "Hopeful", "Worried"],
             sleep: user.sleep || ["0 - 2 hours", "2 - 4 hours", "4 - 6 hours", "6 - 8 hours", "8 - 10 hours"],
@@ -71,13 +71,12 @@ export function saveUser(user) {
                 { "text": "Ice Cream", "icon": "/icons/white/046-ice-cream.png" },
                 { "text": "Rice", "icon": "/icons/white/rice.png" },
                 { "text": "Salad", "icon": "/icons/white/salad.png" },
-                { "text": "Bacon and Eggs", "icon": "/icons/white/032-eggs-and-bacon.png" },
+                { "text": "Bacon and Eggs", "icon": "/icons/white/032-egg-and-bacon.png" },
                 { "text": "Beer", "icon": "/icons/white/039-beer.png" }
             ],
-            physical: user.physical || ["Very Active", "SomewhatActive", "Not Active"]
+            exercise: user.exercise || ["Very Active", "SomewhatActive", "Not Active"]
         })
-        .then((data) => {
-            console.log("auth user", data);
+        .then(() => {
             return user;
         })
 }
