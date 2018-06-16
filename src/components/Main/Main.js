@@ -19,10 +19,10 @@ import { Button } from 'semantic-ui-react';
 import Journal from '../Journal/Journal';
 import EditItems from '../EditItems/EditItems';
 import EditItem from '../EditItem/EditItem';
-
+import Time from '../Time/Time';
+import * as firebase from 'firebase';
 
 import * as routes from '../../constants/routes';
-
 
 class Main extends Component {
 
@@ -42,14 +42,25 @@ class Main extends Component {
 
     componentDidMount() {
 
-        const storedUser = localStorage.getItem('user')
-        if (storedUser) {
-            const storedUserObj = JSON.parse(storedUser)
-            this.setState({
-                authed: true,
-                user: storedUserObj.user
-            })
-        } 
+        // const storedUser = localStorage.getItem('user')
+        // if (storedUser) {
+        //     const storedUserObj = JSON.parse(storedUser)
+        //     this.setState({
+        //         authed: true,
+        //         user: storedUserObj.user
+        //     })
+        // } 
+        // const key = this.state.user.uid
+        // const rootRef = firebase.database().ref().child(`users/${key}`)
+        // console.log("rootRef", rootRef)
+        // const userRef = rootRef.child(`${key}`)
+        // console.log("userRef", userRef)
+        // userRef.on('value', snap => {
+        //     console.log("snap", snap.val())
+        //     this.setState({
+        //     //    user: snap.val() 
+        //     })
+        // })
         
     }
 
@@ -78,19 +89,20 @@ class Main extends Component {
                         { "text": "Meh..", "level": 5, "icon": "013-meh" },
                         { "text": "Sad", "level": 1, "icon": "009-sad-1" }
                     ],
-                    activities: user.activities || [
-                        { "text": "Skateboarding", "icon": "boy-with-skatingboard" },
-                        { "text": "Yoga", "icon": "028-yoga" },
-                        { "text": "Exercising", "icon": "040-strength" },
-                        { "text": "Mountain Climbing", "icon": "climbing-with-rope" },
-                        { "text": "Biking", "icon": "bicycle-rider" },
-                        { "text": "Hiking", "icon": "hiking" },
-                        { "text": "Camping", "icon": "camping" },
-                        { "text": "Bowling", "icon": "bowling" },
-                        { "text": "Fishing", "icon": "fishing-man" },
-                        { "text": "Cleaning", "icon": "cleaning" },
-                        { "text": "Photography", "icon": "038-camera" },
-                    ],
+                    activities: user.activities,
+                    // activities: user.activities || [
+                    //     { "text": "Skateboarding", "icon": "boy-with-skatingboard" },
+                    //     { "text": "Yoga", "icon": "028-yoga" },
+                    //     { "text": "Exercising", "icon": "040-strength" },
+                    //     { "text": "Mountain Climbing", "icon": "climbing-with-rope" },
+                    //     { "text": "Biking", "icon": "bicycle-rider" },
+                    //     // { "text": "Hiking", "icon": "hiking" },
+                    //     { "text": "Camping", "icon": "camping" },
+                    //     { "text": "Bowling", "icon": "bowling" },
+                    //     { "text": "Fishing", "icon": "fishing-man" },
+                    //     { "text": "Cleaning", "icon": "cleaning" },
+                    //     { "text": "Photography", "icon": "038-camera" },
+                    // ],
                     descriptives: user.descriptives || ["Excited", "Scared", "Lonely", "Content", "Tired", "Exhausted", "Ill", "Happy", "Anxious", "Extatic", "Proud", "Determined", "Hopeful", "Worried"],
                     sleep: user.sleep || ["0 - 2 hours", "2 - 4 hours", "4 - 6 hours", "6 - 8 hours", "8 - 10 hours"],
                     meds: user.meds || [
@@ -149,7 +161,7 @@ class Main extends Component {
                                 </div>
                                 <img src={this.state.user.photoURL} alt="user" className="profilePic"></img>
                                 <Menu />
-                               
+                               <Time />
         
                             </div>
                     
@@ -161,47 +173,47 @@ class Main extends Component {
 
                             <Route
                                 exact path={routes.EDIT_FEELINGS}
-                                component={() => <EditItems edit={this.state.user.feelings} />}
+                                    component={() => <EditItems edit={this.state.user.feelings} uid={this.state.user.uid} tyep="feelings"  />}
                             />
     
                             <Route
                                 exact path={routes.EDIT_ACTIVITIES}
-                                component={() => <EditItems edit={this.state.user.activities} />}
+                                    component={() => <EditItems edit={this.state.user.activities} uid={this.state.user.uid} type="activities"  />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_DESCRIPTIVES}
-                                component={() => <EditItems edit={this.state.user.descriptives} />}
+                                component={() => <EditItems edit={this.state.user.descriptives} uid={this.state.user.uid} type="descpriptives" />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_DIET}
-                                component={() => <EditItems edit={this.state.user.diet} />}
+                                    component={() => <EditItems edit={this.state.user.diet} uid={this.state.user.uid} type="diet" />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_EXERCISE}
-                                component={() => <EditItems edit={this.state.user.exercise} />}
+                                    component={() => <EditItems edit={this.state.user.exercise} uid={this.state.user.uid} type="exercise"  />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_FOOD}
-                                component={() => <EditItems edit={this.state.user.foods} />}
+                                    component={() => <EditItems edit={this.state.user.foods} uid={this.state.user.uid} type="foods"/>}
                             />
 
                             <Route
                                 exact path={routes.EDIT_MEDS}
-                                component={() => <EditItems edit={this.state.user.meds} />}
+                                    component={() => <EditItems edit={this.state.user.meds} uid={this.state.user.uid} type="meds" />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_SLEEP}
-                                component={() => <EditItems edit={this.state.user.sleep} />}
+                                    component={() => <EditItems edit={this.state.user.sleep} uid={this.state.user.uid} type="sleep" />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_ITEM}
-                                component={() => <EditItem user={this.state.user} />}
+                                    component={() => <EditItem user={this.state.user} uid={this.state.user.uid} />}
                             />
                             
                             <Route

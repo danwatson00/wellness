@@ -3,13 +3,78 @@ import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Button, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import './EditItems.css';
+import { rebase } from '../Base/Base.js';
+import * as firebase from 'firebase';
 
 export default class EditItems extends React.Component {
 
-    state = { justClicked: null,
-                user: this.props.edit }
+    constructor(props) {
+        super(props)
+        this.handleRemove = this.handleRemove.bind(this)
 
-    // EditIconSelect = (item) => {
+        this.state = { justClicked: null,
+                    user: this.props.edit }
+    }
+
+    handleRemove(id) {
+        console.log("delete clicked", id)
+        console.log("url", rebase.initializedApp.database().ref('users').child(`${this.props.uid}/${this.props.type}/${id}`))
+        return rebase.initializedApp.database().ref('users').child(`${this.props.uid}/${this.props.type}/${id}`).remove()
+    }
+
+    render() {
+
+        console.log("edit props", this.props.edit)
+        const userItems = this.props.edit.map((item) => {
+            
+            console.log("item1", item)
+            if (item.icon) { //if it has an icon it will use this return
+                // const id = Object.keys(userItems).filter(item => Object.keys[item] === id);
+               
+                
+               let key = firebase.database().ref().child(`${this.props.type}`).getKey()
+                console.log("key", key);
+ 
+                return (
+                    <div id={"div" + key} className="iconEditCard">
+                        <img id={"img" + key} src={require(`../IconSelect/icons/${item.icon}.png`)} alt="icon" className="iconSelectIcon"></img>
+                        <h4 id={"h4" + key}className="editItemH4">{item.text}</h4>
+                        <Button key={key} onClick={() =>this.handleRemove(key)} circular inverted color='red' icon>
+                            <Icon name='trash' />
+                        </Button>
+                        <Link className="editBtnLink" to={'/editItem'}><Button circular inverted className="editBtn">Edit</Button></Link>
+                    </div>
+                )
+            } else if (item.dosage) { //only meds have dosage, so it will use this return
+                return (
+                    <div key={this.id} className="medsEditCard">
+                        <h4 className="editItemH4">{item.brand}</h4> 
+                        <h5 className="editItemH5">{item.dosage}</h5>
+                        <Link to={'/editItem'}><Button className="editButton">Edit</Button></Link>
+                    </div>
+                    )
+            }else{ 
+                return (
+                    <div key={item.key} className="wordEditCard">
+                        <h4 className="wordSelectButtons">{item}</h4>
+                        <Link to={'/editItem'}><Button className="editButton">Edit</Button></Link>
+                    </div>
+                )
+            }  
+        })
+
+        return (
+
+            <div className="editItemsDiv">
+                <h2 className="editItemsIntro" >Edit, add, or delete items</h2>
+                {userItems}
+                <Button className="addNewBtn" inverted size='huge'>Add New</Button>
+            </div>
+        )
+    }  
+}
+
+ // EditIconSelect = (item) => {
     //     return (
     //         <div key={item.text} className="iconSelectCard ">
     //             <img src={require(`../IconSelect/icons/${item.icon}.png`)} alt="icon" className="editIcon"></img>
@@ -43,49 +108,3 @@ export default class EditItems extends React.Component {
     //         <Link to={'/editItem'}><Button className="editButton">Edit</Button></Link>
     //     </div>
     // }
-
-    render() {
-        console.log("user", this.state.user)
-        console.log("log", (this.props.edit))
-
-        const userItems = this.props.edit.map((item) => {
-        
-            if (item.icon) {
-                return (
-                    <div key={item.text} className="iconEditCard">
-                        <img src={require(`../IconSelect/icons/${item.icon}.png`)} alt="icon" className="iconSelectIcon"></img>
-                        <h4 className="editItemH4">{item.text}</h4>
-                        <Button circular inverted color='red' icon>
-                            <Icon name='trash' />
-                        </Button>
-                        <Link className="editBtnLink" to={'/editItem'}><Button circular inverted className="editBtn">Edit</Button></Link>
-                    </div>
-                )
-            } else if (item.dosage) {
-                return (
-                    <div key={item} className="medsEditCard">
-                        <h4 className="editItemH4">{item.brand}</h4> 
-                        <h5 className="editItemH5">{item.dosage}</h5>
-                        <Link to={'/editItem'}><Button className="editButton">Edit</Button></Link>
-                    </div>
-                    )
-            }else{
-                return (
-                    <div key={item} className="wordEditCard">
-                        <h4 className="wordSelectButtons">{item}</h4>
-                        <Link to={'/editItem'}><Button className="editButton">Edit</Button></Link>
-                    </div>
-                )
-            }  
-        })
-
-        return (
-
-            <div>
-                <h2 className="editItemsIntro" >Edit, add, or delete items</h2>
-                {userItems}
-                <Button className="addNewBtn" inverted size='huge'>Add New</Button>
-            </div>
-        )
-    }  
-}
