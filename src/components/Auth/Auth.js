@@ -8,6 +8,8 @@ export function auth(email, pw) {
         })
 }
 
+
+
 export function logout() {
     console.log("logout clicked");
     return rebase.initializedApp.auth().signOut()
@@ -43,7 +45,7 @@ export function buildUser(user) {
             excited: { "text":"Excited", "level":9 },
             scared: { "text": "Scared", "level": 2 },
             lonely: { "text": "Lonely", "level": 3 },
-            Content: { "text": "Content", "level": 7 },
+            content: { "text": "Content", "level": 7 },
             },
         sleep: user.sleep || {
             veryLowSleep:{ "text": "0 - 2 hours", "level": 1 },
@@ -63,18 +65,18 @@ export function buildUser(user) {
             notHealthy:{ "text": "Not Healthy", "level":1 }
         },
         foods: user.foods || {
-            tacos:{ "text": "Tacos", "icon": "/icons/white/001-taco" },
-            cupcakes:{ "text": "Cupcakes", "icon": "/icons/white/005-cupcake" },
-            pizza:{ "text": "Pizza", "icon": "/icons/white/017-pizza" },
-            noodles:{ "text": "Noodles", "icon": "/icons/white/020-noodles" },
-            pancakes:{ "text": "Pancakes", "icon": "/icons/white/018-pancakes" },
-            burger:{ "text": "Burger", "icon": "/icons/white/045-burger-2" },
-            veggieBurger:{ "text": "Veggie Burger", "icon": "/icons/white/046-burger-1" },
-            iceCream:{ "text": "Ice Cream", "icon": "/icons/white/046-ice-cream" },
-            rice:{ "text": "Rice", "icon": "/icons/white/rice" },
-            salad:{ "text": "Salad", "icon": "/icons/white/salad" },
-            baconEggs:{ "text": "Bacon and Eggs", "icon": "/icons/white/032-egg-and-bacon" },
-            beer:{ "text": "Beer", "icon": "/icons/white/039-beer" }
+            tacos:{ "text": "Tacos", "icon": "001-taco" },
+            cupcakes:{ "text": "Cupcakes", "icon": "005-cupcake" },
+            pizza:{ "text": "Pizza", "icon": "017-pizza" },
+            noodles:{ "text": "Noodles", "icon": "020-noodles" },
+            pancakes:{ "text": "Pancakes", "icon": "018-pancakes" },
+            burger:{ "text": "Burger", "icon": "045-burger-2" },
+            veggieBurger:{ "text": "Veggie Burger", "icon": "046-burger-1" },
+            iceCream:{ "text": "Ice Cream", "icon": "046-ice-cream" },
+            rice:{ "text": "Rice", "icon": "rice" },
+            salad:{ "text": "Salad", "icon": "salad" },
+            baconEggs:{ "text": "Bacon and Eggs", "icon": "032-egg-and-bacon" },
+            beer:{ "text": "Beer", "icon": "039-beer" }
         },
         exercise: user.exercise || {
             veryActive:{"text":"Very Active", "level": 10 },
@@ -86,6 +88,7 @@ export function buildUser(user) {
 
 
 export function loginWithGoogle() {
+
     return rebase.initializedApp.auth().signInWithPopup(googleProvider)
 
         //ADD HERE if there is a user pull user data, if not save user

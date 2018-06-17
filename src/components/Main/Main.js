@@ -42,25 +42,52 @@ class Main extends Component {
 
     componentDidMount() {
 
+
+        ///Safe version
+        const storedUser = localStorage.getItem('user')
+        if (storedUser) {
+            const storedUserObj = JSON.parse(storedUser)
+            this.setState({
+                authed: true,
+                user: storedUserObj.user
+            })
+        } 
+
+            //NEED THIS TO WORK
         // const storedUser = localStorage.getItem('user')
         // if (storedUser) {
+
         //     const storedUserObj = JSON.parse(storedUser)
-        //     this.setState({
-        //         authed: true,
-        //         user: storedUserObj.user
+        //     let key = storedUserObj.user.uid
+        //     console.log("kkey", key)
+        //     const userRef = firebase.database().ref().child(`${key}`)
+        //     const activitiesRef = userRef.child('activities')
+        //     console.log("activitiesRef", activitiesRef)
+        //     activitiesRef.on('value', snap => {
+        //         console.log("snap", snap.val())
+        //         this.setState({
+        //             user: snap.val()
+        //         })
         //     })
-        // } 
-        // const key = this.state.user.uid
-        // const rootRef = firebase.database().ref().child(`users/${key}`)
-        // console.log("rootRef", rootRef)
-        // const userRef = rootRef.child(`${key}`)
-        // console.log("userRef", userRef)
-        // userRef.on('value', snap => {
-        //     console.log("snap", snap.val())
-        //     this.setState({
-        //     //    user: snap.val() 
-        //     })
-        // })
+
+
+
+        //MAY NOT NEED THIS
+            // this.setState({
+            //     authed: true,
+            //     user: storedUserObj.user
+            // })
+            // .then(storedUserObj => {
+            //     const key = storedUserObj.uid
+            //     console.log("main key", key)
+            // })
+            // .then(key => {
+            //     console.log("main key", key)
+            // })
+        else {
+            console.log("not working agh")
+        }
+        
         
     }
 

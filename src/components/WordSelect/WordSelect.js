@@ -8,7 +8,11 @@ class WordSelect extends Component {
 
     render() {
 
-        const itemsObj = this.props.items.map((item) => (
+        console.log("wordSel props", this.props.items)
+        const itemsArray = Object.values(this.props.items)
+        console.log("itemsArray", itemsArray)
+        const itemCards = itemsArray.map((item) => (
+            
             <WordSelectButton item={item} />
         ))
 
@@ -18,7 +22,7 @@ class WordSelect extends Component {
         return (
             <div className="wordSelectDiv">
                 <div className="wordSelectCardsDiv">
-                    {itemsObj} 
+                    {itemCards} 
                 </div>
             </div>
         );

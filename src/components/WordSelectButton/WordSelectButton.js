@@ -15,8 +15,8 @@ class WordSelectButton extends Component {
 
         return (
             <div className="wordSelectBtnDiv">
-                <Button key={this.props.item} className="wordSelectButton" basic inverted toggle active={active} onClick={this.handleClick}>
-                    {this.props.item}
+                <Button key={this.props.item.text} className="wordSelectButton" basic inverted toggle active={active} onClick={this.handleClick}>
+                    {this.props.item.text}
                 </Button>
             </div>
         );
