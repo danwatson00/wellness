@@ -25,21 +25,18 @@ export default class EditItems extends React.Component {
     render() {
 
         console.log("edit props", this.props.edit)
-        const userItems = this.props.edit.map((item) => {
+        const itemsArray = Object.values(this.props.edit)
+        const userItems = itemsArray.map((item) => {
             
             console.log("item1", item)
             if (item.icon) { //if it has an icon it will use this return
                 // const id = Object.keys(userItems).filter(item => Object.keys[item] === id);
                
-                
-               let key = firebase.database().ref().child(`${this.props.type}`).getKey()
-                console.log("key", key);
- 
                 return (
-                    <div id={"div" + key} className="iconEditCard">
-                        <img id={"img" + key} src={require(`../IconSelect/icons/${item.icon}.png`)} alt="icon" className="iconSelectIcon"></img>
-                        <h4 id={"h4" + key}className="editItemH4">{item.text}</h4>
-                        <Button key={key} onClick={() =>this.handleRemove(key)} circular inverted color='red' icon>
+                    <div id={"div" + item.text} className="iconEditCard">
+                        <img id={"img" + item.text} src={require(`../IconSelect/icons/${item.icon}.png`)} alt="icon" className="iconSelectIcon"></img>
+                        <h4 id={"h4" + item.text}className="editItemH4">{item.text}</h4>
+                        <Button key={item.text} onClick={() =>this.handleRemove(item)} circular inverted color='red' icon>
                             <Icon name='trash' />
                         </Button>
                         <Link className="editBtnLink" to={'/editItem'}><Button circular inverted className="editBtn">Edit</Button></Link>

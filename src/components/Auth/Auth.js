@@ -55,12 +55,12 @@ export function buildUser(user) {
             veryHighSleep: { "text": "8 - 10 hours", "level": 10}
         },
         meds: user.meds || {
-            xanex:{ "brand": "Xanex", "dosage": "0.25mg" },
+            xanax:{ "brand": "Xanax", "dosage": "0.25mg" },
             alprazolam:{ "brand": "Alprazolam", "dosage": "0.25mg" },
             zoloft:{ "brand": "Zoloft", "dosage": "25mg" }
         },
         diet: user.diet || {
-            veryHealthy:{"text":"Very Healthy", level: 10},
+            veryHealthy:{"text":"Very Healthy", "level": 10},
             average:{ "text": "Average", "level":5},
             notHealthy:{ "text": "Not Healthy", "level":1 }
         },
@@ -110,7 +110,7 @@ export function loginWithGoogle() {
 
 
 export function saveUser(ref, user) {
-    
-        ref.set(buildUser(user))
-        return buildUser(user)
+
+    ref.set(buildUser(user))
+    return buildUser(user)
 }

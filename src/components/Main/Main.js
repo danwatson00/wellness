@@ -110,49 +110,14 @@ class Main extends Component {
                     name: user.displayName,
                     photoURL: user.photoURL,
                     uid: user.uid,
-                    //if no existing feelings, canned feelings are given
-                    feelings: user.feelings || [
-                        { "text": "Happy", "level": 10, "icon": "happiness" },
-                        { "text": "Meh..", "level": 5, "icon": "013-meh" },
-                        { "text": "Sad", "level": 1, "icon": "009-sad-1" }
-                    ],
+                    feelings: user.feelings,
                     activities: user.activities,
-                    // activities: user.activities || [
-                    //     { "text": "Skateboarding", "icon": "boy-with-skatingboard" },
-                    //     { "text": "Yoga", "icon": "028-yoga" },
-                    //     { "text": "Exercising", "icon": "040-strength" },
-                    //     { "text": "Mountain Climbing", "icon": "climbing-with-rope" },
-                    //     { "text": "Biking", "icon": "bicycle-rider" },
-                    //     // { "text": "Hiking", "icon": "hiking" },
-                    //     { "text": "Camping", "icon": "camping" },
-                    //     { "text": "Bowling", "icon": "bowling" },
-                    //     { "text": "Fishing", "icon": "fishing-man" },
-                    //     { "text": "Cleaning", "icon": "cleaning" },
-                    //     { "text": "Photography", "icon": "038-camera" },
-                    // ],
-                    descriptives: user.descriptives || ["Excited", "Scared", "Lonely", "Content", "Tired", "Exhausted", "Ill", "Happy", "Anxious", "Extatic", "Proud", "Determined", "Hopeful", "Worried"],
-                    sleep: user.sleep || ["0 - 2 hours", "2 - 4 hours", "4 - 6 hours", "6 - 8 hours", "8 - 10 hours"],
-                    meds: user.meds || [
-                        { "brand": "Xanex", "dosage": "0.25mg" },
-                        { "brand": "Alprazolam", "dosage": "0.25mg" },
-                        { "brand": "Zoloft", "dosage": "25mg" }
-                    ],
-                    diet: user.diet || ["Very Healthy", "Average", "Not Healthy"],
-                    foods: user.foods || [
-                        { "text": "Tacos", "icon": "001-taco" },
-                        { "text": "Cupcakes", "icon": "005-cupcake" },
-                        { "text": "Pizza", "icon": "017-pizza" },
-                        { "text": "Noodles", "icon": "020-noodles" },
-                        { "text": "Pancakes", "icon": "018-pancakes" },
-                        { "text": "Burger", "icon": "045-burger-2" },
-                        { "text": "Veggie Burger", "icon": "046-burger-1" },
-                        { "text": "Ice Cream", "icon": "046-ice-cream" },
-                        { "text": "Rice", "icon": "rice" },
-                        { "text": "Salad", "icon": "salad" },
-                        { "text": "Bacon and Eggs", "icon": "032-egg-and-bacon" },
-                        { "text": "Beer", "icon": "039-beer" },
-                    ],
-                    exercise: user.exercise || ["Very Active", "SomewhatActive", "Not Active"]
+                    descriptives: user.descriptives,
+                    sleep: user.sleep,
+                    meds: user.meds,
+                    diet: user.diet,
+                    foods: user.foods,
+                    exercise: user.exercise
                 }
             })
             //This passes the values in state to local storage
