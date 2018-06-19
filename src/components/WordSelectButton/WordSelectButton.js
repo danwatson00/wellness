@@ -14,11 +14,11 @@ class WordSelectButton extends Component {
         const { active } = this.state
 
         return (
-            <div className="wordSelectBtnDiv">
+            <option className="wordSelectBtnDiv">
                 <Button key={this.props.item.text} className="wordSelectButton" basic inverted toggle active={active} onClick={this.handleClick}>
                     {this.props.item.text}
                 </Button>
-            </div>
+            </option>
         );
     }
 }

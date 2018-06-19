@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./WordSelect.css";
 import WordSelectButton from '../WordSelectButton/WordSelectButton';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
 class WordSelect extends Component {
@@ -21,9 +22,9 @@ class WordSelect extends Component {
 
         return (
             <div className="wordSelectDiv">
-                <div className="wordSelectCardsDiv">
-                    {itemCards} 
-                </div>
+                <Input className="wordSelectCardsDiv" type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+                  {itemCards} 
+                </Input>
             </div>
         );
     }

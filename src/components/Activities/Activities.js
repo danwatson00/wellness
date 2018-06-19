@@ -12,8 +12,8 @@ class Activities extends Component {
         return (
             <div className="activitiesDiv">
                 <h2>What have you been up to today?</h2>
-                <IconSelect items={this.props.user.activities} />
-                <Footer edit={this.props.user.activites} route={routes.EDIT_ACTIVITIES} next="exercise" />
+                <IconSelect type='activities' items={this.props.user.activities} />
+                <Footer route='/activities/edit' edit={this.props.user.activites} route={routes.EDIT_ACTIVITIES} next="exercise" />
             </div>
         );
 

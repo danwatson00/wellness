@@ -66,8 +66,8 @@ export default class EditItems extends React.Component {
                     )
             }else{ 
                 return (
-                    <div key={"div" + item[0]} id={item[0]} className="wordEditCard">
-                        <h4 className="wordSelectButtons">{item[1]}</h4>
+                    <div key={item[0]} id={item[0]} className="wordEditCard">
+                        <h4 className="wordSelectButtons">{item[1].text}</h4>
                         <Link to={'/editItem'}><Button className="editButton">Edit</Button></Link>
                     </div>
                 )
@@ -79,7 +79,7 @@ export default class EditItems extends React.Component {
             <div className="editItemsDiv">
                 <h2 className="editItemsIntro" >Edit, add, or delete items</h2>
                 {userItems}
-                <Link to={'/addItem'}><Button className="addNewBtn" inverted size='huge'>Add New</Button></Link>
+                <Link to={`/${this.props.type}/add`}><Button className="addNewBtn" inverted size='huge'>Add New</Button></Link>
             </div>
         )
     }  

@@ -54,9 +54,9 @@ export function buildUser(user) {
             veryHighSleep: { "text": "8 - 10 hours", "level": 10}
         },
         meds: user.meds || {
-            xanax:{ "brand": "Xanax", "dosage": "0.25mg" },
-            alprazolam:{ "brand": "Alprazolam", "dosage": "0.25mg" },
-            zoloft:{ "brand": "Zoloft", "dosage": "25mg" }
+            xanax:{ "text": "Xanax", "dosage": "0.25mg" },
+            alprazolam:{ "text": "Alprazolam", "dosage": "0.25mg" },
+            zoloft:{ "text": "Zoloft", "dosage": "25mg" }
         },
         diet: user.diet || {
             veryHealthy:{"text":"Very Healthy", "level": 10},

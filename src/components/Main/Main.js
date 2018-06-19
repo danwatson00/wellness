@@ -206,18 +206,43 @@ class Main extends Component {
                             />
 
                             <Route
-                                exact path={routes.ADD_ITEM}
-                                component={() => <AddItem edit={this.state.user} uid={this.state.user.uid} cat={this.props.type}  />}
-                            />
-
-                            <Route
                                 exact path={routes.ADD_FEELING}
-                                component={() => <AddItem uid={this.state.user.uid} type="feelings"  />}
+                                    component={() => <AddItem uid={this.state.user.uid} edit={this.state.user.feelings} type="feelings"  />}
                             />
 
                             <Route
                                 exact path={routes.ADD_DESCRIPTIVE}
-                                component={() => <AddItem uid={this.state.user.uid} type="feelings"  />}
+                                    component={() => <AddItem uid={this.state.user.uid} edit={this.state.user.descriptives} type="descriptives"  />}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_ACTIVITIES}
+                                    component={() => <AddItem uid={this.state.user.uid} edit={this.state.user.activities} type="activities"  />}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_DIET}
+                                    component={() => <AddItem edit={this.state.user.diet} uid={this.state.user.uid} type="diet" />}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_EXERCISE}
+                                    component={() => <AddItem edit={this.state.user.exercise} uid={this.state.user.uid} type="exercise"  />}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_FOOD}
+                                    component={() => <AddItem edit={this.state.user.foods} uid={this.state.user.uid} type="foods"/>}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_MEDS}
+                                    component={() => <AddItem edit={this.state.user.meds} uid={this.state.user.uid} type="meds" />}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_SLEEP}
+                                    component={() => <AddItem edit={this.state.user.sleep} uid={this.state.user.uid} type="sleep" />}
                             />
 
                             <Route
@@ -232,7 +257,7 @@ class Main extends Component {
 
                             <Route
                                 exact path={routes.EDIT_DESCRIPTIVES}
-                                component={() => <EditItems edit={this.state.user.descriptives} uid={this.state.user.uid} type="descpriptives" />}
+                                component={() => <EditItems edit={this.state.user.descriptives} uid={this.state.user.uid} type="descriptives" />}
                             />
 
                             <Route

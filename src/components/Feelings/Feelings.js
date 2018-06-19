@@ -101,7 +101,7 @@ class Feelings extends Component {
                 <div className="feelingCardDiv">
                     {userFeelings}
                 </div>
-                <Footer edit={this.props.user.feelings} route={routes.EDIT_FEELINGS} next="descriptives" />
+                <Footer edit={this.props.user.feelings} route={routes.EDIT_FEELINGS} next="activities" />
             </div>
 
         );
