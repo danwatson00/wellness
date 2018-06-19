@@ -1,6 +1,6 @@
 .footerDiv {
     border-top: 1px solid white;
-    padding-top: 7px;
+    padding: 7px 5px 5px 5px;
     display: grid;
     grid-template-columns: 1fr 40px 90px;
     grid-template-rows: 1fr 1fr;

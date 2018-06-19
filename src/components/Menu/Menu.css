@@ -1,6 +1,8 @@
 .hamburgerDiv {
     background: none !important;
     grid-column: 4;
+    border: none !important;
+    padding: 0 !important;
 }
 
 .menuText {
@@ -11,4 +13,11 @@
     justify-self: center;
     align-self: center !important;
     width: 30px;
+
+}
+
+.hamburgerMenu {
+    max-width: 40px;
+    margin: 5px;
+    
 }

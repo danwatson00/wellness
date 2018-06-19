@@ -1,6 +1,8 @@
 import React from 'react';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import hamburger from '../../img/hamburger.png';
+import menu from '../../img/circleMenu.png';
+import { Button, Icon } from 'semantic-ui-react';
 import './Menu.css';
 import { Link } from 'react-router-dom';
 
@@ -27,10 +29,9 @@ export default class MENU extends React.Component {
             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 
                 <DropdownToggle className="hamburgerDiv">
-                    <img className="hamburger" src={hamburger} alt="menu button"></img>
-                    <div className="menuText">MENU</div>
+                    <img src={menu} className="hamburgerMenu" alt="hamburger menu"></img>
                 </DropdownToggle>
-                <DropdownMenu>
+                <DropdownMenu right>
                     <DropdownItem><Link to={routes.HOME}>Home</Link></DropdownItem>
                     <DropdownItem><Link to={routes.FEELINGS}>Create Entry</Link></DropdownItem>
                     <DropdownItem><Link to={routes.PAST}>Past Entries</Link></DropdownItem>
@@ -40,3 +41,5 @@ export default class MENU extends React.Component {
         );
     }
 }
+
+// <img className="hamburger" src={hamburger} alt="menu button"></img>

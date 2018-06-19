@@ -1,6 +1,7 @@
 .iconSelectCard {
     display: inline-block;
-    margin-bottom: 15px;
+    margin: 15px 10px 15px 10px;
+    max-width: 100px;
 }
 
 .iconSelectIcon {
@@ -16,4 +17,6 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin: 15px;
 }
+

@@ -14,16 +14,30 @@ export default class EditItems extends React.Component {
         super(props)
         this.handleRemove = this.handleRemove.bind(this)
         this.handleEdit = this.handleEdit.bind(this)
+        // this.watchState = this.watchState.bind(this)
      
 
         this.state = { justClicked: null,
-                    user: this.props.edit }
+                    user: this.props.user }
     }
 
     handleRemove(objKey) {
         console.log("delete clicked", objKey)
         firebase.database().ref(`users/${this.props.uid}/${this.props.type}/${objKey}`).remove()
-        // rebase.initializedApp.database().ref('users').child(`${this.props.uid}/${this.props.type}/${objKey}`).remove(objKey)
+        const userRef = firebase.database().ref().child(`${this.props.uid}`)
+        // console.log("editItems userRef", userRef)
+        // const categoryRef = userRef.child(`${this.props.type}`)
+        // console.log("editItems categoryRef", categoryRef)
+        firebase.database().ref(`users/${this.props.uid}`).on('value', snap => {
+            console.log("editItems snap", snap.val())
+            let someUser = {...this.props.user}
+            someUser = snap.val()
+            this.setState({
+                user: someUser
+            }
+            )
+            localStorage.setItem('user', JSON.stringify(this.state.user))
+        })
     }
 
     handleEdit(objKey, editedObj) {
@@ -35,11 +49,28 @@ export default class EditItems extends React.Component {
     //     console.log("put an awesome function here")
     // }
 
+    // watchState = () => {
+    //     console.log("kkey", this.props.uid)
+    //     const userRef = firebase.database().ref().child(`${this.props.uid}`)
+    //     console.log("userRef", userRef)
+    //     const feelingsRef = userRef.child('feelings')
+    //     console.log("activitiesRef", feelingsRef)
+    //     feelingsRef.on('value', snap => {
+    //         console.log("snap", snap.val())
+    //         this.setState({
+    //             dan: "test",
+    //             user: snap.val()
+    //         })
+    //     })
+    // }
+   
+
     render() {
 
-        console.log("edit props", this.props.edit)
-        const itemsArray = Object.entries(this.props.edit)
-        console.log("itemsArray", itemsArray)
+        let cat = this.props.type
+        console.log("cat", this.props.type)
+        console.log("state cat", this.state.user[cat])
+        const itemsArray = Object.entries(this.state.user[cat])
         const userItems = itemsArray.map((item) => {
             
             console.log("item key", item[0])
