@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100');
 
 
+.main {
+     flex: 1 0 auto;
+    padding: var( — space) var( — space) 0;
+    width: 100%;
+}
+
 .mainContainer {
     font-family: 'Roboto', sans-serif;
     color: white;
@@ -28,12 +34,18 @@
     width: 40px;
     margin: 0 10px 0 10px;
 }
+
 .userIcon {
     grid-column: 3;
     justify-self: center;
     align-self: center !important;
     width: 40px;
-    margin: 0 10px 0 10px;
+    margin: 5px 10px 5px 10px;
+}
+
+.container {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .logout-btn {
@@ -63,4 +75,5 @@
     align-self: center;
     justify-self: start;
     max-height: 25px;
+    margin: 5px;
 }

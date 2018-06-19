@@ -13,21 +13,22 @@ class Home extends Component {
     }
 
     componentDidMount(){
-        const stored = localStorage.getItem('user');
-        console.log("didMount stored", stored);
-        if(stored){
-            const parseDB = JSON.parse(stored);
-            this.setState({
-                user: parseDB.user
-            })
-        }
+        // const stored = localStorage.getItem('user');
+        // console.log("didMount stored", stored);
+        // if(stored){
+        //     const parseDB = JSON.parse(stored);
+        //     this.setState({
+        //         user: parseDB.user
+        //     })
+        // }
     }
 
         render(){
+            console.log("user obj", this.state.user)
             return( 
                 <div>
                     <div className="welcomeHeading">
-                        <h1>Hello, {this.props.user.name}!</h1>
+                        <h1>Hello, {this.state.user.name}!</h1>
                         <h2>Welcome to your Wellness Tracker</h2>
                     </div>
                     <p>Create an entry or view past entries by clicking on the buttons below.</p>

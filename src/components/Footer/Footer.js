@@ -10,7 +10,7 @@ class Footer extends Component {
         this.handleClick = this.handleClick.bind(this)
 
         this.state = {
-            justClicked: null
+            answers: this.props.answers
         }
     }
     

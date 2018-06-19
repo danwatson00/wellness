@@ -3,20 +3,38 @@ import './IconSelect.css';
 
 class IconSelect extends Component {
 
+    constructor(props) {
+        super(props)
 
+        this.handleSubmit = this.handleSubmit.bind(this)
+
+        //sets initial state of feeling
+        this.state = {
+            stuff: {}
+        }
+    }
+
+    handleSubmit = (text, level, icon) => {
+        const currentObj = localStorage.getItem(`${this.props.type}`)
+        const userObj = JSON.parse(currentObj)
+        this.setState({ feeling: { text: text, level: level, icon: icon } })
+        let answerObj = {
+            feeling: this.state.feeling
+        }
+        console.log("answerObj", answerObj)
+        localStorage.setItem('answerObj', answerObj);
+
+        // console.log("clickity", this.state.entry.feeling)
+    }
 
     render() {
 
-        console.log("iconSel props", this.props.items)
         const itemsArray = Object.values(this.props.items)
-        console.log("itemsArray", itemsArray)
         const userItems = itemsArray.map((item) => (
-
             <div key={item.text} className="iconSelectCard ">
                 <img src={require(`./icons/${item.icon}.png`)} alt="icon" className="iconSelectIcon"></img>
                 <h3 className="">{item.text}</h3>
             </div>
-
         ))
 
         return (
@@ -26,7 +44,6 @@ class IconSelect extends Component {
             </div>
 
         );
-
     }
 }
 

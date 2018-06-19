@@ -82,10 +82,6 @@ export default class AddItem extends React.Component {
         });
     }
 
-    buildIconSelectList = () => {
-
-    }
-
     render() {
 
         const HAPPY = 'happiness';
@@ -97,7 +93,7 @@ export default class AddItem extends React.Component {
         const YAWN = '001-yawn';
         const MEDICINE = '002-medicine-1';
 
-        if(this.props.edit.icon) {
+        if(this.props.group === 'icon') {
             return (
                 <Form>
                     <FormGroup>
@@ -155,7 +151,7 @@ export default class AddItem extends React.Component {
                     <Button onClick={this.handleIconSubmit}>Submit</Button>
                 </Form>
             )
-        }else if(this.props.edit.dosage) {
+        }else if(this.props.group === 'meds') {
             return (
                 <Form>
                     <FormGroup>

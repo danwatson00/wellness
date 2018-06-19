@@ -8,7 +8,6 @@ export function auth(email, pw) {
 }
 
 
-
 export function logout() {
     console.log("logout clicked");
     return rebase.initializedApp.auth().signOut()
@@ -22,9 +21,9 @@ export function buildUser(user) {
         name: user.displayName,
         photoURL: user.photoURL,
         feelings: user.feelings || {
-            happy:{ "text": "Happy", "level": 10, "icon": "happiness", "id": "happy" },
-            meh:{ "text": "Meh..", "level": 5, "icon": "013-meh", "id": "meh" },
-            sad:{ "text": "Sad", "level": 1, "icon": "009-sad-1", "id": "sad" }
+            happy:{ "text": "Happy", "level": "10", "icon": "happiness", "id": "happy" },
+            meh:{ "text": "Meh..", "level": "5", "icon": "013-meh", "id": "meh" },
+            sad:{ "text": "Sad", "level": "1", "icon": "009-sad-1", "id": "sad" }
         },
         activities: user.activities || {
             working:{ "text": "Working", "icon": "happiness" },
@@ -41,17 +40,17 @@ export function buildUser(user) {
             photography:{ "text": "Photography", "icon": "038-camera" },
         },
         descriptives: user.descriptives || {
-            excited: { "text":"Excited", "level":9 },
-            scared: { "text": "Scared", "level": 2 },
-            lonely: { "text": "Lonely", "level": 3 },
-            content: { "text": "Content", "level": 7 },
+            excited: { "text":"Excited", "level":"9" },
+            scared: { "text": "Scared", "level": "2" },
+            lonely: { "text": "Lonely", "level": "3" },
+            content: { "text": "Content", "level": "7" },
             },
         sleep: user.sleep || {
-            veryLowSleep:{ "text": "0 - 2 hours", "level": 1 },
-            lowSleep: { "text": "2 - 4 hours", "level": 3 },
-            avgSleep: { "text": "4 - 6 hours", "level": 5 },
-            highSleep: { "text": "6 - 8 hours", "level": 7 }, 
-            veryHighSleep: { "text": "8 - 10 hours", "level": 10}
+            veryLowSleep:{ "text": "0 - 2 hours", "level": "1" },
+            lowSleep: { "text": "2 - 4 hours", "level": "3" },
+            avgSleep: { "text": "4 - 6 hours", "level": "5" },
+            highSleep: { "text": "6 - 8 hours", "level": "7" }, 
+            veryHighSleep: { "text": "8 - 10 hours", "level": "10"}
         },
         meds: user.meds || {
             xanax:{ "text": "Xanax", "dosage": "0.25mg" },
@@ -59,9 +58,9 @@ export function buildUser(user) {
             zoloft:{ "text": "Zoloft", "dosage": "25mg" }
         },
         diet: user.diet || {
-            veryHealthy:{"text":"Very Healthy", "level": 10},
-            average:{ "text": "Average", "level":5},
-            notHealthy:{ "text": "Not Healthy", "level":1 }
+            veryHealthy:{"text":"Very Healthy", "level": "10"},
+            average:{ "text": "Average", "level":"5"},
+            notHealthy:{ "text": "Not Healthy", "level":"1" }
         },
         foods: user.foods || {
             tacos:{ "text": "Tacos", "icon": "001-taco" },
@@ -78,9 +77,9 @@ export function buildUser(user) {
             beer:{ "text": "Beer", "icon": "039-beer" }
         },
         exercise: user.exercise || {
-            veryActive:{"text":"Very Active", "level": 10 },
-            avgActive: { "text": "SomewhatActive", "level": 10 },
-            notActive: { "text":"Not Active", "level": 3}
+            veryActive:{"text":"Very Active", "level": "10" },
+            avgActive: { "text": "SomewhatActive", "level": "10" },
+            notActive: { "text":"Not Active", "level": "3"}
         }
     }
 }
@@ -91,20 +90,21 @@ export function loginWithGoogle() {
     return rebase.initializedApp.auth().signInWithPopup(googleProvider)
 
         //ADD HERE if there is a user pull user data, if not save user
-        .then((data) => {
-            let ref = rebase.initializedApp.database().ref(`users/${data.user.uid}`)
-            return ref.once('value')
-                .then(snapshot => {
-                    console.log("ref", snapshot.val())
-                    let value = snapshot.val()
-                    if (value) {
-                        return value
-                    } else {
-                        return saveUser(ref, data.user)
-                    }
-
-                })
-        });
+    .then((data) => {
+        console.log("data", data)
+        let ref = rebase.initializedApp.database().ref(`users/${data.user.uid}`)
+        return ref.once('value')
+        .then(snapshot => {
+            console.log("ref", snapshot.val())
+            let value = snapshot.val()
+            console.log("value", value)
+            if (value) {
+                return value
+            } else {
+                return saveUser(ref, data.user)
+            }
+        })
+    });
 }
 
 
