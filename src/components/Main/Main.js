@@ -19,10 +19,11 @@ import { Button } from 'semantic-ui-react';
 import Journal from '../Journal/Journal';
 import EditItems from '../EditItems/EditItems';
 import EditItem from '../EditItem/EditItem';
-
-
+import Time from '../Time/Time';
+import AddItem from '../AddItem/AddItem';
+import * as firebase from 'firebase';
+import * as image from '../../constants/images';
 import * as routes from '../../constants/routes';
-
 
 class Main extends Component {
 
@@ -35,13 +36,19 @@ class Main extends Component {
             loading: false,
             user: {}
         }
-            
-            this.authenticate = this.authenticate.bind(this)
-            this.logoutApp = this.logoutApp.bind(this)
-        }
+        
+        //binds these functions so they can be used in components
+        this.authenticate = this.authenticate.bind(this)
+        this.logoutApp = this.logoutApp.bind(this)
+        this.submitForm = this.submitForm.bind(this)
+        this.deleteForm = this.deleteForm.bind(this)
+        this.updateForm = this.updateForm.bind(this)
+    }
 
     componentDidMount() {
 
+
+        ///Safe version
         const storedUser = localStorage.getItem('user')
         if (storedUser) {
             const storedUserObj = JSON.parse(storedUser)
@@ -49,9 +56,48 @@ class Main extends Component {
                 authed: true,
                 user: storedUserObj.user
             })
-        } 
-        
+        }else {
+            console.log("not working agh")
+        }
     }
+
+        //NEED THIS TO WORK
+        // const storedUserObj = JSON.parse(storedUser)
+        // let key = storedUserObj.user.uid
+
+        // this.setState({
+        // authed: true,
+        // user: storedUserObj.user
+        // })
+        
+        // // console.log("kkey", key)
+        // // const userRef = firebase.database().ref().child(`${key}`)
+        // // console.log("userRef", userRef)
+        // // const feelingsRef = userRef.child('feelings')
+        // // console.log("activitiesRef", feelingsRef)
+        // // feelingsRef.on('value', snap => {
+        // //     console.log("snap", snap.val())
+        // //     this.setState({
+        // //         dan: "test",
+        // //         user: snap.val()
+        // //     })
+        // // })
+    
+
+
+        //MAY NOT NEED THIS
+            // this.setState({
+            //     authed: true,
+            //     user: storedUserObj.user
+            // })
+            // .then(storedUserObj => {
+            //     const key = storedUserObj.uid
+            //     console.log("main key", key)
+            // })
+            // .then(key => {
+            //     console.log("main key", key)
+            // })
+        
 
      
 
@@ -72,48 +118,14 @@ class Main extends Component {
                     name: user.displayName,
                     photoURL: user.photoURL,
                     uid: user.uid,
-                    //if no existing feelings, canned feelings are given
-                    feelings: user.feelings || [
-                        { "text": "Happy", "level": 10, "icon": "happiness" },
-                        { "text": "Meh..", "level": 5, "icon": "013-meh" },
-                        { "text": "Sad", "level": 1, "icon": "009-sad-1" }
-                    ],
-                    activities: user.activities || [
-                        { "text": "Skateboarding", "icon": "boy-with-skatingboard" },
-                        { "text": "Yoga", "icon": "028-yoga" },
-                        { "text": "Exercising", "icon": "040-strength" },
-                        { "text": "Mountain Climbing", "icon": "climbing-with-rope" },
-                        { "text": "Biking", "icon": "bicycle-rider" },
-                        { "text": "Hiking", "icon": "hiking" },
-                        { "text": "Camping", "icon": "camping" },
-                        { "text": "Bowling", "icon": "bowling" },
-                        { "text": "Fishing", "icon": "fishing-man" },
-                        { "text": "Cleaning", "icon": "cleaning" },
-                        { "text": "Photography", "icon": "038-camera" },
-                    ],
-                    descriptives: user.descriptives || ["Excited", "Scared", "Lonely", "Content", "Tired", "Exhausted", "Ill", "Happy", "Anxious", "Extatic", "Proud", "Determined", "Hopeful", "Worried"],
-                    sleep: user.sleep || ["0 - 2 hours", "2 - 4 hours", "4 - 6 hours", "6 - 8 hours", "8 - 10 hours"],
-                    meds: user.meds || [
-                        { "brand": "Xanex", "dosage": "0.25mg" },
-                        { "brand": "Alprazolam", "dosage": "0.25mg" },
-                        { "brand": "Zoloft", "dosage": "25mg" }
-                    ],
-                    diet: user.diet || ["Very Healthy", "Average", "Not Healthy"],
-                    foods: user.foods || [
-                        { "text": "Tacos", "icon": "001-taco" },
-                        { "text": "Cupcakes", "icon": "005-cupcake" },
-                        { "text": "Pizza", "icon": "017-pizza" },
-                        { "text": "Noodles", "icon": "020-noodles" },
-                        { "text": "Pancakes", "icon": "018-pancakes" },
-                        { "text": "Burger", "icon": "045-burger-2" },
-                        { "text": "Veggie Burger", "icon": "046-burger-1" },
-                        { "text": "Ice Cream", "icon": "046-ice-cream" },
-                        { "text": "Rice", "icon": "rice" },
-                        { "text": "Salad", "icon": "salad" },
-                        { "text": "Bacon and Eggs", "icon": "032-egg-and-bacon" },
-                        { "text": "Beer", "icon": "039-beer" },
-                    ],
-                    exercise: user.exercise || ["Very Active", "SomewhatActive", "Not Active"]
+                    feelings: user.feelings,
+                    activities: user.activities,
+                    descriptives: user.descriptives,
+                    sleep: user.sleep,
+                    meds: user.meds,
+                    diet: user.diet,
+                    foods: user.foods,
+                    exercise: user.exercise
                 }
             })
             //This passes the values in state to local storage
@@ -129,6 +141,37 @@ class Main extends Component {
             user: {}
         })
     }
+
+    
+
+    submitForm() {
+        console.log("submitForm clicked")
+        let formObj = {
+            date: "05:04:04:05",
+            feeling: "Happy",
+            activities: { "brand": "Zoloft", "dosage": "25mg" },
+            descriptives: ["happy", "sad", "stressed", "angry"],
+            sleep: "6-8 hours",
+            meds: {},
+            diet: "Healthy",
+            foods: ["broccoli", "cabbage", "pizza", "ice cream"],
+            exercise: "Very Active"
+        }
+
+        firebase.database().ref(`users/${this.state.user.uid}/moods`).push(formObj)
+    }
+
+    deleteForm(objKey) {
+        console.log("deleteForm clicked")
+        firebase.database().ref(`users/${this.state.user.uid}/moods/${objKey}`).remove(objKey)
+    }
+
+    updateForm(obj, objKey) {
+        console.log("updateForm clicked")
+        firebase.database().ref(`users/${this.state.user.uid}/moods/${objKey}`).update(obj)
+    }
+
+    
 
 
     render() {
@@ -146,10 +189,13 @@ class Main extends Component {
                                 <img src={logo} className="logo" alt="logo"></img>
                                 <div className="d-flex flex-column justify-content-center text-center">
                                     <Button type="button" onClick={() => this.logoutApp('google')} circular className="logout-btn">LOGOUT</Button>
+                                    
                                 </div>
                                 <img src={this.state.user.photoURL} alt="user" className="profilePic"></img>
                                 <Menu />
-                               
+                                <Button type="button" onClick={() => this.submitForm()} circular className="logout-btn">SUBMIT TEST</Button>
+                                <Button type="button" onClick={() => this.deleteForm()} circular className="logout-btn">DELETE TEST</Button>
+                                <Button type="button" onClick={() => this.updateForm()} circular className="logout-btn">UPDATE TEST</Button>
         
                             </div>
                     
@@ -160,48 +206,88 @@ class Main extends Component {
                             />
 
                             <Route
+                                exact path={routes.ADD_FEELING}
+                                    component={() => <AddItem uid={this.state.user.uid} edit={this.state.user.feelings} type="feelings"  />}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_DESCRIPTIVE}
+                                    component={() => <AddItem uid={this.state.user.uid} edit={this.state.user.descriptives} type="descriptives"  />}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_ACTIVITIES}
+                                    component={() => <AddItem uid={this.state.user.uid} edit={this.state.user.activities} type="activities"  />}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_DIET}
+                                    component={() => <AddItem edit={this.state.user.diet} uid={this.state.user.uid} type="diet" />}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_EXERCISE}
+                                    component={() => <AddItem edit={this.state.user.exercise} uid={this.state.user.uid} type="exercise"  />}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_FOOD}
+                                    component={() => <AddItem edit={this.state.user.foods} uid={this.state.user.uid} type="foods"/>}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_MEDS}
+                                    component={() => <AddItem edit={this.state.user.meds} uid={this.state.user.uid} type="meds" />}
+                            />
+
+                            <Route
+                                exact path={routes.ADD_SLEEP}
+                                    component={() => <AddItem edit={this.state.user.sleep} uid={this.state.user.uid} type="sleep" />}
+                            />
+
+                            <Route
                                 exact path={routes.EDIT_FEELINGS}
-                                component={() => <EditItems edit={this.state.user.feelings} />}
+                                    component={() => <EditItems edit={this.state.user.feelings} uid={this.state.user.uid} type="feelings"  />}
                             />
     
                             <Route
                                 exact path={routes.EDIT_ACTIVITIES}
-                                component={() => <EditItems edit={this.state.user.activities} />}
+                                    component={() => <EditItems edit={this.state.user.activities} uid={this.state.user.uid} type="activities"  />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_DESCRIPTIVES}
-                                component={() => <EditItems edit={this.state.user.descriptives} />}
+                                component={() => <EditItems edit={this.state.user.descriptives} uid={this.state.user.uid} type="descriptives" />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_DIET}
-                                component={() => <EditItems edit={this.state.user.diet} />}
+                                    component={() => <EditItems edit={this.state.user.diet} uid={this.state.user.uid} type="diet" />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_EXERCISE}
-                                component={() => <EditItems edit={this.state.user.exercise} />}
+                                    component={() => <EditItems edit={this.state.user.exercise} uid={this.state.user.uid} type="exercise"  />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_FOOD}
-                                component={() => <EditItems edit={this.state.user.foods} />}
+                                    component={() => <EditItems edit={this.state.user.foods} uid={this.state.user.uid} type="foods"/>}
                             />
 
                             <Route
                                 exact path={routes.EDIT_MEDS}
-                                component={() => <EditItems edit={this.state.user.meds} />}
+                                    component={() => <EditItems edit={this.state.user.meds} uid={this.state.user.uid} type="meds" />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_SLEEP}
-                                component={() => <EditItems edit={this.state.user.sleep} />}
+                                    component={() => <EditItems edit={this.state.user.sleep} uid={this.state.user.uid} type="sleep" />}
                             />
 
                             <Route
                                 exact path={routes.EDIT_ITEM}
-                                component={() => <EditItem user={this.state.user} />}
+                                    component={() => <EditItem user={this.state.user} uid={this.state.user.uid} />}
                             />
                             
                             <Route

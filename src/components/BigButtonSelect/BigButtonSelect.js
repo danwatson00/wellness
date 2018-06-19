@@ -7,9 +7,11 @@ class BigButtonSelect extends Component {
 
     render() {
 
-        const userItems = this.props.items.map((item) => (
+        console.log("wordSel props", this.props.items)
+        const itemsArray = Object.values(this.props.items)
+        const userItems = itemsArray.map((item) => (
 
-            <Button key={item} className="bigButton" size="lg" outline color="light">{item}</Button>
+            <Button key={item.text} className="bigButton" size="lg" outline color="light">{item.text}</Button>
         ))
 
         return (

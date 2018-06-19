@@ -9,7 +9,9 @@ class Meds extends Component {
 
     render() {
 
-        const userMeds = this.props.user.meds.map((med) => (
+        const medsArray = Object.values(this.props.user.meds)
+        console.log("medsArray", medsArray)
+        const userMeds = medsArray.map((med) => (
 
             <Button key={med} className="medsButton" outline color="light">{med.brand} - {med.dosage}</Button>
         ))

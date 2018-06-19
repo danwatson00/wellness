@@ -12,7 +12,7 @@ export default class Journal extends React.Component {
                     <Label for="exampleText">Journal Entry</Label>
                     <Input type="textarea" name="text" id="exampleText" />
                 </FormGroup>
-                <Button className="completeButton">Complete</Button>
+                <Button className="completeButton">Save &#38; Submit</Button>
             </Form>
         );
     }
