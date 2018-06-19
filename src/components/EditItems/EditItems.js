@@ -6,54 +6,68 @@ import './EditItems.css';
 import { rebase } from '../Base/Base.js';
 import * as firebase from 'firebase';
 
+import * as routes from '../../constants/routes';
+
 export default class EditItems extends React.Component {
 
     constructor(props) {
         super(props)
         this.handleRemove = this.handleRemove.bind(this)
+        this.handleEdit = this.handleEdit.bind(this)
+     
 
         this.state = { justClicked: null,
                     user: this.props.edit }
     }
 
-    handleRemove(id) {
-        console.log("delete clicked", id)
-        console.log("url", rebase.initializedApp.database().ref('users').child(`${this.props.uid}/${this.props.type}/${id}`))
-        return rebase.initializedApp.database().ref('users').child(`${this.props.uid}/${this.props.type}/${id}`).remove()
+    handleRemove(objKey) {
+        console.log("delete clicked", objKey)
+        firebase.database().ref(`users/${this.props.uid}/${this.props.type}/${objKey}`).remove()
+        // rebase.initializedApp.database().ref('users').child(`${this.props.uid}/${this.props.type}/${objKey}`).remove(objKey)
     }
+
+    handleEdit(objKey, editedObj) {
+        console.log("edit clicked", objKey)
+        firebase.database().ref(`users/${this.props.uid}/${this.props.type}/${objKey}`).update(editedObj)
+    }
+
+    // editIconItem() {
+    //     console.log("put an awesome function here")
+    // }
 
     render() {
 
         console.log("edit props", this.props.edit)
-        const itemsArray = Object.values(this.props.edit)
+        const itemsArray = Object.entries(this.props.edit)
+        console.log("itemsArray", itemsArray)
         const userItems = itemsArray.map((item) => {
             
-            console.log("item1", item)
-            if (item.icon) { //if it has an icon it will use this return
+            console.log("item key", item[0])
+            if (item[1].icon) { //if it has an icon it will use this return
                 // const id = Object.keys(userItems).filter(item => Object.keys[item] === id);
                
                 return (
-                    <div id={"div" + item.text} className="iconEditCard">
-                        <img id={"img" + item.text} src={require(`../IconSelect/icons/${item.icon}.png`)} alt="icon" className="iconSelectIcon"></img>
-                        <h4 id={"h4" + item.text}className="editItemH4">{item.text}</h4>
-                        <Button key={item.text} onClick={() =>this.handleRemove(item)} circular inverted color='red' icon>
+                    <div key={item[0]} id={item[0]} className="iconEditCard">
+                        <img id={"img" + item[1].text} src={require(`../IconSelect/icons/${item[1].icon}.png`)} alt="icon" className="iconSelectIcon"></img>
+                        <h4 id={"h4" + item[1].text}className="editItemH4">{item[1].text}</h4>
+                        <Button key={item[1].text} onClick={() =>this.handleRemove(item[0])} circular inverted color='red' icon>
                             <Icon name='trash' />
                         </Button>
                         <Link className="editBtnLink" to={'/editItem'}><Button circular inverted className="editBtn">Edit</Button></Link>
                     </div>
                 )
-            } else if (item.dosage) { //only meds have dosage, so it will use this return
+            } else if (item[1].dosage) { //only meds have dosage, so it will use this return
                 return (
-                    <div key={this.id} className="medsEditCard">
-                        <h4 className="editItemH4">{item.brand}</h4> 
-                        <h5 className="editItemH5">{item.dosage}</h5>
+                    <div key={item[0]} id={item[0]} className="medsEditCard">
+                        <h4 className="editItemH4">{item[1].brand}</h4> 
+                        <h5 className="editItemH5">{item[1].dosage}</h5>
                         <Link to={'/editItem'}><Button className="editButton">Edit</Button></Link>
                     </div>
                     )
             }else{ 
                 return (
-                    <div key={item.key} className="wordEditCard">
-                        <h4 className="wordSelectButtons">{item}</h4>
+                    <div key={"div" + item[0]} id={item[0]} className="wordEditCard">
+                        <h4 className="wordSelectButtons">{item[1]}</h4>
                         <Link to={'/editItem'}><Button className="editButton">Edit</Button></Link>
                     </div>
                 )
@@ -65,7 +79,7 @@ export default class EditItems extends React.Component {
             <div className="editItemsDiv">
                 <h2 className="editItemsIntro" >Edit, add, or delete items</h2>
                 {userItems}
-                <Button className="addNewBtn" inverted size='huge'>Add New</Button>
+                <Link to={'/addItem'}><Button className="addNewBtn" inverted size='huge'>Add New</Button></Link>
             </div>
         )
     }  

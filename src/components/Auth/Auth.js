@@ -3,7 +3,6 @@ import { googleProvider, rebase } from '../Base/Base.js';
 export function auth(email, pw) {
     return rebase.initializedApp.auth().createUserWithEmailAndPassword(email, pw)
         .then((data) => {
-            console.log("data is", data);
             saveUser(data);
         })
 }
@@ -23,9 +22,9 @@ export function buildUser(user) {
         name: user.displayName,
         photoURL: user.photoURL,
         feelings: user.feelings || {
-            happy:{ "text": "Happy", "level": 10, "icon": "happiness" },
-            meh:{ "text": "Meh..", "level": 5, "icon": "013-meh" },
-            sad:{ "text": "Sad", "level": 1, "icon": "009-sad-1" }
+            happy:{ "text": "Happy", "level": 10, "icon": "happiness", "id": "happy" },
+            meh:{ "text": "Meh..", "level": 5, "icon": "013-meh", "id": "meh" },
+            sad:{ "text": "Sad", "level": 1, "icon": "009-sad-1", "id": "sad" }
         },
         activities: user.activities || {
             working:{ "text": "Working", "icon": "happiness" },

@@ -23,6 +23,9 @@ export const EDIT_FEELINGS = '/feelings/edit';
 export const EDIT_FOOD = '/food/edit';
 export const EDIT_MEDS = '/meds/edit';
 export const EDIT_SLEEP = '/sleep/edit';
+export const ADD_ITEM = '/addItem';
+export const ADD_DESCRIPTIVE = '/descriptives/add';
+export const ADD_FEELING = '/feelings/add'
 
 
 

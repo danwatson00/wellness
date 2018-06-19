@@ -25,24 +25,25 @@ class Feelings extends Component {
         console.log("click click")
         this.setState = {
             mood: {
-                feeling: "key"
+                feeling: key
             }
         }
     }
 
     fixedArr = (badArray) => {
     console.log("badArray in for loop", badArray)
-    for (let item = 0; item < badArray.length; item++) {
-        console.log("for loop", item)
-        const obj = item[1]
-        obj.key = item[0]
-        console.log("for loop obj", obj)
-        let fixedArr = []
-        fixedArr.push(obj)
-        console.log("fixedArr", fixedArr)
-        return fixedArr
+        for (let item = 0; item < badArray.length; item++) {
+            console.log("for loop", item)
+            const obj = item[1]
+            obj.key = item[0]
+            console.log("for loop obj", obj)
+            let fixedArr = []
+            fixedArr.push(obj)
+            console.log("fixedArr", fixedArr)
+            return fixedArr
+        }
     }
-}
+
 
     handleSubmit = () => {
         this.setState({ entry: {feeling:'test'} })
@@ -50,17 +51,13 @@ class Feelings extends Component {
     }
 
     render() {
-        
-
-        // const badArray = Object.entries(this.props.user.feelings)
-
-        // this.fixedArr(badArray);
-        
-
         // let fixedArray = badArray.forEach(function(item)  {
+            
         //     console.log("forEach item", item)
         //     const obj = item[1]
+        //     console.log("obj", obj)
         //     obj.key = item[0]
+        //     console.log("obj after key", obj)
         //     fixedArray.push(obj)
         //     console.log("fixedArray", fixedArray)
         //     return fixedArray
@@ -83,14 +80,18 @@ class Feelings extends Component {
         // })
         console.log("props", this.props.user.feelings)
 
-        let arr = Object.values(this.props.user.feelings)
+        let arr = Object.entries(this.props.user.feelings)
         console.log("arr", arr)
 
-        const userFeelings = arr.map((feeling, index) => (
+        for(let key in this.props.user.feelings) {
+            console.log("let key", key, this.props.user.feelings[key])
+        }
+
+        const userFeelings = arr.map((feeling) => (
            
-            <div id={index} key={index} onClick={this.handleClick} className="feelingCard">
-                <img src={require(`./feelingIcons/${feeling.icon}.png`)} alt="feeling emoji" className="feelingIcon"></img>
-                <h3>{feeling.text}</h3>
+            <div id={feeling[0]} key={feeling[0]} onClick={this.handleClick} className="feelingCard">
+                <img src={require(`./feelingIcons/${feeling[1].icon}.png`)} alt="feeling emoji" className="feelingIcon"></img>
+                <h3>{feeling[1].text}</h3>
             </div>
         ))
 

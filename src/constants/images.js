@@ -1,6 +1,9 @@
-import happyIcon from '../img/icons/white/happiness.png';
-import mehIcon from '../img/icons/white/013-meh.png';
-import sadIcon from '../img/icons/white/009-sad-1.png';
-
-
-export default { happyIcon, mehIcon, sadIcon }
+export const HAPPY = 'happiness';
+export const MEH = '013-meh';
+export const SAD = '009-sad-1';
+export const BARBEQUE = '001-barbecue-12';
+export const FUNNEL = '001-funnel';
+export const TACO = '001-taco';
+export const TOMATO = '001-tomato';
+export const YAWN = '001-yawn';
+export const MEDICINE = '002-medicine-1';
