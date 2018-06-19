@@ -61,14 +61,20 @@ export default class EditItems extends React.Component {
                     <div key={item[0]} id={item[0]} className="medsEditCard">
                         <h4 className="editItemH4">{item[1].brand}</h4> 
                         <h5 className="editItemH5">{item[1].dosage}</h5>
-                        <Link to={'/editItem'}><Button className="editButton">Edit</Button></Link>
+                        <Button key={item[1].text} onClick={() => this.handleRemove(item[0])} circular inverted color='red' icon>
+                            <Icon name='trash' />
+                        </Button>
+                        <Link className="editBtnLink" to={'/editItem'}><Button circular inverted className="editBtn">Edit</Button></Link>
                     </div>
                     )
             }else{ 
                 return (
                     <div key={item[0]} id={item[0]} className="wordEditCard">
                         <h4 className="wordSelectButtons">{item[1].text}</h4>
-                        <Link to={'/editItem'}><Button className="editButton">Edit</Button></Link>
+                        <Button key={item[1].text} onClick={() => this.handleRemove(item[0])} circular inverted color='red' icon>
+                            <Icon name='trash' />
+                        </Button>
+                        <Link className="editBtnLink" to={'/editItem'}><Button circular inverted className="editBtn">Edit</Button></Link>
                     </div>
                 )
             }  
