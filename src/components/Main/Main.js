@@ -21,6 +21,8 @@ import EditItems from '../EditItems/EditItems'
 import EditItem from '../EditItem/EditItem'
 import Time from '../Time/Time'
 import AddItem from '../AddItem/AddItem'
+import FormSubmit from '../FormSubmit/FormSubmit'
+import Entries from '../Entries/Entries'
 import * as firebase from 'firebase'
 import * as image from '../../constants/images'
 import * as routes from '../../constants/routes'
@@ -54,7 +56,6 @@ class Main extends Component {
     //         console.log("not working agh")
     //     }
     // }
-
 
     componentDidMount() {
         const storedUser = localStorage.getItem('user')
@@ -98,6 +99,7 @@ class Main extends Component {
                     name: user.name,
                     photoURL: user.photoURL,
                     uid: user.uid,
+                    entries: user.entries,
                     feelings: user.feelings,
                     activities: user.activities,
                     descriptives: user.descriptives,
@@ -181,23 +183,11 @@ class Main extends Component {
     submitForm() {
         console.log("submitForm clicked")
         let formObj = {
-            date: "05:04:04:05",
-            feeling: "Happy",
-            activities: { 
-                onPhone:{
-                    "text":"On Phone",
-                    "icon":"014-call"
-                },
-                yoga:{
-                    "text": "Yoga",
-                    "icon": "028-yoga" 
-                },
-                sleep: "6-8 hours",
-                meds: { "brand": "Zoloft", "dosage": "25mg" },
+                feeling: {"text":"Happy", "icon": "Happy", "level":'10'},
+                sleep: {"text":"6-8 hours"},
                 diet: "Healthy",
-                foods: ["013-sandwich", "cabbage", "pizza", "ice cream"],
-                exercise: "Very Active"
-            }
+                exercise: "Very Active",
+                journal: "Lorem ipsum"
         }
 
         firebase.database().ref(`users/${this.state.user.uid}/userEntries`).push(formObj)
@@ -407,6 +397,17 @@ class Main extends Component {
                                 exact path={routes.JOURNAL}
                                 component={() => <Journal user={this.state.user} />}
                             />
+
+                            <Route
+                                exact path={routes.FORM_SUBMIT}
+                                component={() => <FormSubmit user={this.state.user} uid={this.state.user.uid} />}
+                            />
+
+                            <Route
+                                exact path={routes.ENTRIES}
+                                component={() => <Entries user={this.state.user} uid={this.state.user.uid} />}
+                            />
+
                     </Switch>
 
                         </div>

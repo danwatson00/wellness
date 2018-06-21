@@ -39,6 +39,8 @@ export const EDIT_ITEM_FEELINGS = '/feelings/edit/item';
 export const EDIT_ITEM_FOOD = '/food/edit/item';
 export const EDIT_ITEM_MEDS = '/meds/edit/item';
 export const EDIT_ITEM_SLEEP = '/sleep/edit/item';
+export const FORM_SUBMIT = '/submit';
+export const ENTRIES = '/entries';
 
 
 

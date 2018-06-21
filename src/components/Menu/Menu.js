@@ -27,15 +27,14 @@ export default class MENU extends React.Component {
     render() {
         return (
             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                
                 <DropdownToggle className="hamburgerDiv">
                     <img src={menu} className="hamburgerMenu" alt="hamburger menu"></img>
                 </DropdownToggle>
                 <DropdownMenu right>
                     <DropdownItem><Link to={routes.HOME}>Home</Link></DropdownItem>
                     <DropdownItem><Link to={routes.FEELINGS}>Create Entry</Link></DropdownItem>
-                    <DropdownItem><Link to={routes.PAST}>Past Entries</Link></DropdownItem>
-                    <DropdownItem><Link to={routes.ABOUT}>About</Link></DropdownItem>
+                    <DropdownItem><Link to={routes.ENTRIES}>Past Entries</Link></DropdownItem>
+                    {/*<DropdownItem><Link to={routes.ABOUT}>About</Link></DropdownItem>*/}
                 </DropdownMenu>
             </ButtonDropdown>
         );

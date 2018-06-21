@@ -20,6 +20,7 @@ export function buildUser(user) {
         uid: user.uid,
         name: user.displayName,
         photoURL: user.photoURL,
+        entries: user.entries || {},
         feelings: user.feelings || {
             happy:{ "text": "Happy", "level": "10", "icon": "happiness", "id": "happy" },
             meh:{ "text": "Meh..", "level": "5", "icon": "013-meh", "id": "meh" },

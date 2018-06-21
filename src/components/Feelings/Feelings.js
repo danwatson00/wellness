@@ -28,7 +28,7 @@ class Feelings extends Component {
         this.setState({ feeling: { text: text, level: level, icon: icon }}, () => {
             console.log("da", this.state)
             let obj = this.state.feeling
-            localStorage.setItem('feelings', JSON.stringify(obj))
+            localStorage.setItem('feeling', JSON.stringify(obj))
         })
     }
     
