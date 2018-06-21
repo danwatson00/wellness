@@ -6,6 +6,7 @@
 
 .welcomeHeading h1, .welcomeHeading h2 {
     color: white !important;
+    text-align: center !important;
 }
 
 .pastEntriesBtn, .createEntryBtn {

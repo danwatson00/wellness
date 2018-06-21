@@ -12,3 +12,25 @@
     margin-top: 4px;
     font-size: 1em;
 }
+
+.iconSelectCard {
+    display: inline-block;
+    margin: 15px 10px 15px 10px;
+    max-width: 100px;
+}
+
+.iconSelectIcon {
+    max-width: 50px;
+}
+
+.iconSelectCard h3 {
+    margin-top: 4px;
+    font-size: 1em;
+}
+
+.iconSelectDiv {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 15px;
+}

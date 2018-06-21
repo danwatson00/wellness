@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
-import { loginWithGoogle, logout } from '../Auth/Auth';
-import Home from '../Home/Home';
-import Menu from '../Menu/Menu';
-import logo from '../../img/logo.png';
-import userIcon from '../../img/user.png';
-import Welcome from '../Welcome/Welcome';
-import { Route, Switch } from 'react-router-dom';
-import './Main.css';
-import Descriptives from '../Descriptives/Descriptives';
-import Activities from '../Activities/Activities';
-import Feelings from '../Feelings/Feelings';
-import Exercise from '../Exercise/Exercise';
-import Diet from '../Diet/Diet';
-import Sleep from '../Sleep/Sleep';
-import Food from '../Food/Food';
-import Meds from '../Meds/Meds';
-import { Button } from 'semantic-ui-react';
-import Journal from '../Journal/Journal';
-import EditItems from '../EditItems/EditItems';
-import EditItem from '../EditItem/EditItem';
-import Time from '../Time/Time';
-import AddItem from '../AddItem/AddItem';
-import * as firebase from 'firebase';
-import * as image from '../../constants/images';
-import * as routes from '../../constants/routes';
+import React, { Component } from 'react'
+import { loginWithGoogle, logout } from '../Auth/Auth'
+import Home from '../Home/Home'
+import Menu from '../Menu/Menu'
+import logo from '../../img/logo.png'
+import userIcon from '../../img/user.png'
+import Welcome from '../Welcome/Welcome'
+import { Route, Switch } from 'react-router-dom'
+import './Main.css'
+import Descriptives from '../Descriptives/Descriptives'
+import Activities from '../Activities/Activities'
+import Feelings from '../Feelings/Feelings'
+import Exercise from '../Exercise/Exercise'
+import Diet from '../Diet/Diet'
+import Sleep from '../Sleep/Sleep'
+import Food from '../Food/Food'
+import Meds from '../Meds/Meds'
+import { Button } from 'semantic-ui-react'
+import Journal from '../Journal/Journal'
+import EditItems from '../EditItems/EditItems'
+import EditItem from '../EditItem/EditItem'
+import Time from '../Time/Time'
+import AddItem from '../AddItem/AddItem'
+import * as firebase from 'firebase'
+import * as image from '../../constants/images'
+import * as routes from '../../constants/routes'
 
 class Main extends Component {
 
@@ -35,83 +35,47 @@ class Main extends Component {
             authed: false,
             loading: false,
             user: {},
-            moodEntry: {}
         }
         
-        //binds these functions so they can be used in components
         this.authenticate = this.authenticate.bind(this)
         this.logoutApp = this.logoutApp.bind(this)
-        // this.submitForm = this.submitForm.bind(this)
-        // this.deleteForm = this.deleteForm.bind(this)
-        // this.updateForm = this.updateForm.bind(this)
-        this.setStateFromStorage = this.setStateFromStorage.bind(this)
-        this.watchState = this.watchState.bind(this)
+        this.buildFormObj = this.buildFormObj.bind(this)
     }
 
-    setStateFromStorage = () => {
-        const storedUser = localStorage.getItem('user')
-        if (storedUser) {
-            const storedUserObj = JSON.parse(storedUser)
-            this.setState({
-                authed: true,
-                user: storedUserObj.user
-            })
-        } else {
-            console.log("not working agh")
-        }
-    }
-    
-    watchState = () => {
-        console.log("kkey",this.state.user.uid)
-        const userRef = firebase.database().ref().child(`${this.state.user.uid}`)
-        userRef.on('value', snap => {
-            console.log("snap", snap.val())
-            this.setState({
-                dan: "test",
-                user: snap.val()
-            })
-        })
-    }
+    // setStateFromStorage = () => {
+    //     const storedUser = localStorage.getItem('user')
+    //     if (storedUser) {
+    //         const storedUserObj = JSON.parse(storedUser)
+    //         this.setState({
+    //             authed: true,
+    //             user: storedUserObj.user
+    //         })
+    //     } else {
+    //         console.log("not working agh")
+    //     }
+    // }
 
 
     componentDidMount() {
-        firebase.database().ref().child(`${this.props.uid}`).on('value', snap => {
-            console.log("main snap", snap.val())
+        const storedUser = localStorage.getItem('user')
+        console.log("storedUser", storedUser)
+        if (storedUser) {
+        
+            const storedUserObj = JSON.parse(storedUser)
+
             this.setState({
-                user: snap.val()
+                authed: true,
+                user: storedUserObj
             })
-            localStorage.setItem(`user`, JSON.stringify(this.state.user))
-        })
-
-        // this.setStateFromStorage()
-        ///Safe version
-        
+        } else {
+                firebase.database().ref().child(`${this.props.uid}`).on('value', snap => {
+                console.log("pulled user from fb", snap.val())
+                this.setState({
+                    user: snap.val()
+                })
+            })
+        }   
     }
-        //NEED THIS TO WORK
-        // const storedUserObj = JSON.parse(storedUser)
-        // let key = storedUserObj.user.uid
-
-        // this.setState({
-        // authed: true,
-        // user: storedUserObj.user
-        // })
-        
-        
-    
-
-
-        //MAY NOT NEED THIS
-            // this.setState({
-            //     authed: true,
-            //     user: storedUserObj.user
-            // })
-            // .then(storedUserObj => {
-            //     const key = storedUserObj.uid
-            //     console.log("main key", key)
-            // })
-            // .then(key => {
-            //     console.log("main key", key)
-            // })
         
 
      
@@ -145,8 +109,9 @@ class Main extends Component {
                 }
             })
             //This passes the values in state to local storage
-            localStorage.setItem('user', JSON.stringify(this.state))
-        });
+            console.log("auth set user to storage", this.state.user)
+            localStorage.setItem('user', JSON.stringify(this.state.user))
+        })
     }
 
     logoutApp() {
@@ -158,34 +123,95 @@ class Main extends Component {
         })
     }
 
+    // saveAnswers = (userObject) => {
+    //     userObject.ownerID = this.props.user.id
+    //     return fetch(`http://localhost:4000/contacts/`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(userObject)
+    //     }).then((response) => {
+    //         return response.json();
+    //     }).then((data) => {
+    //         this.setState({
+    //             contact: data,
+    //             addContact: false,
+    //         })
+    //         this.loadContacts(this.props.user.id);
+    //     })
+    // }
+
+    buildFormObj = (obj, type) => {
+        console.log("obj again", obj)
+        localStorage.setItem(type, JSON.stringify(obj))
+    }
+
+    // formObj= obj.text
+        // console.log("formObj", formObj)
+        // formObj.activities = this.state.activities
+        // formObj.sleep = this.state.sleep
+        // formObj.meds = this.state.meds
+        // formObj.diet = this.state.diet
+        // formObj.foods = this.state.foods
+        // formObj.exercise = this.state.exercise
+        // for(var key in obj) {
+        //     if(obj.hasOwnProperty(key)) {
+        //         var value = obj[key]
+        //     }
+        // }
+        // `'formObj'[Object.keys(obj)]` = value
+
+    // showMe = () => {
+    //     console.log("this state", this.state)
+    // }
+
+    // buildObjToSend = () => {
+    //     const feeling = Object.assign({}, this.state.feeling);
+    //     this.props.buildFormObj(feeling)
+    // }
+
+    // handleSubmit = (text, level, icon) => {
+    //     const feeling = Object.assign({ text: text, level: level, icon: icon });
+    //     this.props.buildFormObj(feeling)
+
+    // }
     
 
-    // submitForm() {
-    //     console.log("submitForm clicked")
-    //     let formObj = {
-    //         date: "05:04:04:05",
-    //         feeling: "Happy",
-    //         activities: { "brand": "Zoloft", "dosage": "25mg" },
-    //         descriptives: ["happy", "sad", "stressed", "angry"],
-    //         sleep: "6-8 hours",
-    //         meds: {},
-    //         diet: "Healthy",
-    //         foods: ["broccoli", "cabbage", "pizza", "ice cream"],
-    //         exercise: "Very Active"
-    //     }
+    submitForm() {
+        console.log("submitForm clicked")
+        let formObj = {
+            date: "05:04:04:05",
+            feeling: "Happy",
+            activities: { 
+                onPhone:{
+                    "text":"On Phone",
+                    "icon":"014-call"
+                },
+                yoga:{
+                    "text": "Yoga",
+                    "icon": "028-yoga" 
+                },
+                sleep: "6-8 hours",
+                meds: { "brand": "Zoloft", "dosage": "25mg" },
+                diet: "Healthy",
+                foods: ["013-sandwich", "cabbage", "pizza", "ice cream"],
+                exercise: "Very Active"
+            }
+        }
 
-    //     firebase.database().ref(`users/${this.state.user.uid}/moods`).push(formObj)
-    // }
+        firebase.database().ref(`users/${this.state.user.uid}/userEntries`).push(formObj)
+    }
 
     // deleteForm(objKey) {
     //     console.log("deleteForm clicked")
     //     firebase.database().ref(`users/${this.state.user.uid}/moods/${objKey}`).remove(objKey)
     // }
 
-    // updateForm(obj, objKey) {
-    //     console.log("updateForm clicked")
-    //     firebase.database().ref(`users/${this.state.user.uid}/moods/${objKey}`).update(obj)
-    // }
+    updateForm(obj, objKey) {
+        console.log("updateForm clicked")
+        firebase.database().ref(`users/${this.state.user.uid}/moods/${objKey}`).update(obj)
+    }
 
     //TEST BUTTONS FOR FIREBASE FOR REFERENCE
     // <Button type="button" onClick={() => this.submitForm()} circular className="logout-btn">SUBMIT TEST</Button>
@@ -209,7 +235,6 @@ class Main extends Component {
                                 </div>
                                 <img src={this.state.user.photoURL} alt="user" className="profilePic"></img>
                                 <Menu />
-                                
         
                             </div>
                     
@@ -221,42 +246,42 @@ class Main extends Component {
 
                             <Route
                                 exact path={routes.ADD_FEELING}
-                                    component={() => <AddItem uid={this.state.user.uid} edit={this.state.user.feelings} type="feelings"  />}
+                                    component={() => <AddItem user={this.state.user} uid={this.state.user.uid} edit={this.state.user.feelings} type="feelings"n group="icon"  />}
                             />
 
                             <Route
                                 exact path={routes.ADD_DESCRIPTIVE}
-                                    component={() => <AddItem uid={this.state.user.uid} edit={this.state.user.descriptives} type="descriptives"  />}
+                                    component={() => <AddItem user={this.state.user} uid={this.state.user.uid} edit={this.state.user.descriptives} type="descriptives" group="icon"  />}
                             />
 
                             <Route
                                 exact path={routes.ADD_ACTIVITIES}
-                                    component={() => <AddItem uid={this.state.user.uid} edit={this.state.user.activities} type="activities" group="icon"  />}
+                                    component={() => <AddItem user={this.state.user} uid={this.state.user.uid} edit={this.state.user.activities} type="activities" group="icon"  />}
                             />
 
                             <Route
                                 exact path={routes.ADD_DIET}
-                                    component={() => <AddItem edit={this.state.user.diet} uid={this.state.user.uid} type="diet" group="words" />}
+                                    component={() => <AddItem user={this.state.user} edit={this.state.user.diet} uid={this.state.user.uid} type="diet" group="words" />}
                             />
 
                             <Route
                                 exact path={routes.ADD_EXERCISE}
-                                    component={() => <AddItem edit={this.state.user.exercise} uid={this.state.user.uid} type="exercise" group="words"  />}
+                                    component={() => <AddItem user={this.state.user} edit={this.state.user.exercise} uid={this.state.user.uid} type="exercise" group="words"  />}
                             />
 
                             <Route
                                 exact path={routes.ADD_FOOD}
-                                    component={() => <AddItem edit={this.state.user.foods} uid={this.state.user.uid} type="foods" group="icon"/>}
+                                    component={() => <AddItem user={this.state.user} edit={this.state.user.foods} uid={this.state.user.uid} type="foods" group="icon"/>}
                             />
 
                             <Route
                                 exact path={routes.ADD_MEDS}
-                                    component={() => <AddItem edit={this.state.user.meds} uid={this.state.user.uid} type="meds" group="meds" />}
+                                    component={() => <AddItem user={this.state.user} edit={this.state.user.meds} uid={this.state.user.uid} type="meds" group="meds" />}
                             />
 
                             <Route
                                 exact path={routes.ADD_SLEEP}
-                                    component={() => <AddItem edit={this.state.user.sleep} uid={this.state.user.uid} type="sleep" group="words" />}
+                                    component={() => <AddItem user={this.state.user} edit={this.state.user.sleep} uid={this.state.user.uid} type="sleep" group="words" />}
                             />
 
                             <Route
@@ -300,8 +325,44 @@ class Main extends Component {
                             />
 
                             <Route
-                                exact path={routes.EDIT_ITEM}
-                                    component={() => <EditItem user={this.state.user} uid={this.state.user.uid} />}
+                                exact path={routes.EDIT_ITEM_FEELINGS}
+                                component={() => <EditItem user={this.state.user} edit={this.state.user.feelings} uid={this.state.user.uid} type="feelings" group="icon" />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_ITEM_ACTIVITIES}
+                                component={() => <EditItem user={this.state.user} edit={this.state.user.activities} uid={this.state.user.uid} type="activities" group="icon" />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_ITEM_DESCRIPTIVES}
+                                component={() => <EditItem user={this.state.user} edit={this.state.user.descriptives} uid={this.state.user.uid} type="descriptives" />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_ITEM_DIET}
+                                component={() => <EditItem user={this.state.user} edit={this.state.user.diet} uid={this.state.user.uid} type="diet" />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_ITEM_EXERCISE}
+                                component={() => <EditItem user={this.state.user} edit={this.state.user.exercise} uid={this.state.user.uid} type="exercise" />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_ITEM_FOOD}
+                                component={() => <EditItem user={this.state.user} edit={this.state.user.foods} uid={this.state.user.uid} type="foods" />}
+                            />
+
+
+                            <Route
+                                exact path={routes.EDIT_ITEM_MEDS}
+                                component={() => <EditItem user={this.state.user} edit={this.state.user.meds} uid={this.state.user.uid} type="meds" />}
+                            />
+
+                            <Route
+                                exact path={routes.EDIT_ITEM_SLEEP}
+                                component={() => <EditItem user={this.state.user} edit={this.state.user.sleep} uid={this.state.user.uid} type="sleep" />}
                             />
                             
                             <Route
@@ -314,7 +375,7 @@ class Main extends Component {
                             />
                             <Route
                                 exact path={routes.ACTIVITIES}
-                                component={() => <Activities answers={this.state} user={this.state.user} />}
+                                    component={() => <Activities answers={this.state} user={this.state.user} buildFormObj={this.buildFormObj} />}
                             />
 
                             <Route

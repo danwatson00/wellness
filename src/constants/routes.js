@@ -31,6 +31,14 @@ export const ADD_DIET = '/diet/add';
 export const ADD_FOOD = '/food/add';
 export const ADD_MEDS = '/medications/add';
 export const ADD_SLEEP = '/sleep/add';
+export const EDIT_ITEM_ACTIVITIES = '/activities/edit/item';
+export const EDIT_ITEM_DESCRIPTIVES = '/descriptives/edit/item';
+export const EDIT_ITEM_DIET = '/diet/edit/item';
+export const EDIT_ITEM_EXERCISE = '/exercise/edit/item';
+export const EDIT_ITEM_FEELINGS = '/feelings/edit/item';
+export const EDIT_ITEM_FOOD = '/food/edit/item';
+export const EDIT_ITEM_MEDS = '/meds/edit/item';
+export const EDIT_ITEM_SLEEP = '/sleep/edit/item';
 
 
 

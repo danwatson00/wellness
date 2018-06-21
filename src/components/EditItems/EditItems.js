@@ -73,10 +73,9 @@ export default class EditItems extends React.Component {
         const itemsArray = Object.entries(this.state.user[cat])
         const userItems = itemsArray.map((item) => {
             
-            console.log("item key", item[0])
-            if (item[1].icon) { //if it has an icon it will use this return
-                // const id = Object.keys(userItems).filter(item => Object.keys[item] === id);
-               
+            console.log("item icon", item[1].icon)
+            if (this.props.group === 'icon') { //if it has an icon it will use this return
+        
                 return (
                     <div key={item[0]} id={item[0]} className="iconEditCard">
                         <img id={"img" + item[1].text} src={require(`../IconSelect/icons/${item[1].icon}.png`)} alt="icon" className="iconSelectIcon"></img>
@@ -84,10 +83,10 @@ export default class EditItems extends React.Component {
                         <Button key={item[1].text} onClick={() =>this.handleRemove(item[0])} circular inverted color='red' icon>
                             <Icon name='trash' />
                         </Button>
-                        <Link className="editBtnLink" to={'/editItem'}><Button circular inverted className="editBtn">Edit</Button></Link>
+                        <Link className="editBtnLink" to={`/${this.props.type}/edit/item`}><Button circular inverted className="editBtn">Edit</Button></Link>
                     </div>
                 )
-            } else if (item[1].dosage) { //only meds have dosage, so it will use this return
+            } else if (this.props.group === 'meds') { //only meds have dosage, so it will use this return
                 return (
                     <div key={item[0]} id={item[0]} className="medsEditCard">
                         <h4 className="editItemH4">{item[1].brand}</h4> 
@@ -95,7 +94,7 @@ export default class EditItems extends React.Component {
                         <Button key={item[1].text} onClick={() => this.handleRemove(item[0])} circular inverted color='red' icon>
                             <Icon name='trash' />
                         </Button>
-                        <Link className="editBtnLink" to={'/editItem'}><Button circular inverted className="editBtn">Edit</Button></Link>
+                        <Link className="editBtnLink" to={`/${this.props.type}/edit/item`}><Button circular inverted className="editBtn">Edit</Button></Link>
                     </div>
                     )
             }else{ 
@@ -105,7 +104,7 @@ export default class EditItems extends React.Component {
                         <Button key={item[1].text} onClick={() => this.handleRemove(item[0])} circular inverted color='red' icon>
                             <Icon name='trash' />
                         </Button>
-                        <Link className="editBtnLink" to={'/editItem'}><Button circular inverted className="editBtn">Edit</Button></Link>
+                        <Link className="editBtnLink" to={`/${this.props.type}/edit/item`}><Button circular inverted className="editBtn">Edit</Button></Link>
                     </div>
                 )
             }  

@@ -42,12 +42,24 @@ export default class AddItem extends React.Component {
         }
 
         itemRef.push(item);
+
         this.setState({
             text: '',
             level: '',
-            dosage:'',
             radio1: ''
-        });
+        })
+
+        firebase.database().ref(`users/${this.props.uid}`).on('value', snap => {
+            console.log("editItems snap", snap.val())
+            let theUser = { ...this.props.user }
+            theUser = snap.val()
+            console.log("theUser", theUser)
+            this.setState({
+                user: theUser
+            }
+            )
+            localStorage.setItem('user', JSON.stringify(theUser))
+        })
     }
 
     handleMedsSubmit(e) {
@@ -59,11 +71,22 @@ export default class AddItem extends React.Component {
             dosage: this.state.level,
         }
 
-        itemRef.push(item);
+        itemRef.push(item)
         this.setState({
             text: '',
             dosage: ''
-        });
+        })
+        firebase.database().ref(`users/${this.props.uid}`).on('value', snap => {
+            console.log("initial user", localStorage.getItem('user'))
+            console.log("editItems snap", snap.val())
+            let theUser = { ...this.props.user }
+            theUser = snap.val()
+            this.setState({
+                user: theUser
+            }
+            )
+            localStorage.setItem('user', JSON.stringify(this.state.user))
+        })
     }
 
     handleWordSubmit(e) {
@@ -75,11 +98,21 @@ export default class AddItem extends React.Component {
             level: this.state.level,
         }
 
-        itemRef.push(item);
+        itemRef.push(item)
         this.setState({
             text: '',
-            level: ''
-        });
+            dosage: ''
+        })
+        firebase.database().ref(`users/${this.props.uid}`).on('value', snap => {
+            console.log("addItem snap", snap.val())
+            let theUser = { ...this.props.user }
+            theUser = snap.val()
+            this.setState({
+                user: theUser
+            }
+            )
+            localStorage.setItem('user', JSON.stringify(this.state.user))
+        })
     }
 
     render() {
@@ -92,6 +125,29 @@ export default class AddItem extends React.Component {
         const TOMATO = '001-tomato';
         const YAWN = '001-yawn';
         const MEDICINE = '002-medicine-1';
+        const ANGRY = '024-sad';
+        const FISHING = 'fishing-man';
+        const HIKING = 'hiking.png';
+        const HORSEBACK = 'horse-riding';
+        const CANOEING = 'man-in-canoe';
+        const SWIMMING = 'man-swimming';
+        const RICE = 'rice';
+        const SALAD = 'salad';
+        const SPAGHETTI = 'spaguetti';
+        const SICK = '015-ill'
+        const SURPRISED = '005-surprise'
+        const TIRED = '001-yawn'
+        const CRYING = '019-crying'
+        const EXTATIC = '016-happy-2'
+        const DEPRESSED = '008-sad-2'
+        const CHIPS = '039-chips'
+        const COOKIES = '037-cookies'
+        const AVACADO = '027-avacado'
+        const ICE_CREAM = '024-ice-cream'
+        const SANDWICH = '013-sandwich'
+        const PANCAKES = '018-pancakes'
+
+
 
         if(this.props.group === 'icon') {
             return (
@@ -148,7 +204,7 @@ export default class AddItem extends React.Component {
                             </Label>
                         </FormGroup>
                     </FormGroup>
-                    <Button onClick={this.handleIconSubmit}>Submit</Button>
+                    <Link to={`/${this.props.type}`}><Button onClick={this.handleIconSubmit}>Submit</Button></Link>
                 </Form>
             )
         }else if(this.props.group === 'meds') {

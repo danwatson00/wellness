@@ -2,13 +2,31 @@ import React from 'react'
 import { Form, FormGroup, Label, Input, FormText, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import * as image from '../../constants/images';
+import './EditItem.css';
+import * as firebase from 'firebase';
 
-export default class Example extends React.Component {
+export default class EditItem extends React.Component {
 
     buildIconSelectList = () => {
 
     }
 
+    handleSubmit = () => {
+        // this.setState({ text: text, level: level, icon: icon })
+        // console.log(this.state)
+        // itemRef = firebase.database().ref(`users/${this.props.uid}/${this.props.type}`).push(item)
+        const itemRef = firebase.database().ref(`users/${this.props.uid}/${this.props.type}/${this.props.item}`);
+        let item = {
+            text: this.state.text,
+            level: this.state.level,
+            icon: this.state.icon
+        }
+        itemRef.update(item);
+        // this.setState({
+        //     text: '',
+        //     level: '',
+        // });
+    }
 
     render() {
 
@@ -24,11 +42,12 @@ export default class Example extends React.Component {
         return (
             <Form>
                 <FormGroup>
-                    <Label for="exampleEmail">Item Text</Label>
+                    <Label for="itemText"><h2 className="itemTextLabel">Edit Your Item</h2></Label>
+                    <h2 className="EditLabelFix">Item Text</h2>
                     <Input type="text" name="Item Text" id="editItemText" placeholder="Enter text here" />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="levelSelect">Select the level. Level 10 represents something extremely positive and beneficial. Level 1 would be extremely unhealty and hurtful to your wellbeing.</Label>
+                    <Label className="levelSelectLabel" for="levelSelect"><h2 className="editItemH2">Select the level</h2><p>Level 10 represents something extremely positive and beneficial. Level 1 would be extremely unhealty and hurtful to your wellbeing.</p></Label>
                     <Input type="select" name="level" id="editLevel">
                         <option>Level 10</option>    
                         <option>Level 9</option>
@@ -42,11 +61,11 @@ export default class Example extends React.Component {
                         <option>Level 1</option>
                     </Input>
                 </FormGroup>
-                <FormGroup tag="fieldset">
-                    <legend>Radio Buttons</legend>
-                    <FormGroup check>
+                <FormGroup className="iconSelectFormGroup" tag="fieldset">
+                    <legend><h2>Radio Buttons</h2></legend>
+                    <FormGroup className="iconRadioInput" check>
                         <Label check>
-                            <Input type="radio" name="radio1" /> {<img src={require(`./icons/${HAPPY}.png`)} alt="icon" className="iconSelectIcon"></img>}
+                            <Input  type="radio" name="radio1" /> {<img src={require(`./icons/${HAPPY}.png`)} alt="icon" className="iconSelectIcon"></img>}
                             Happy
                         </Label>
                     </FormGroup>
@@ -75,7 +94,7 @@ export default class Example extends React.Component {
                         </Label>
                     </FormGroup>
                 </FormGroup>
-                <Button>Submit</Button>
+                <Button onClick={() => this.handleSubmit()}>Submit</Button>
             </Form>
         );
     }
