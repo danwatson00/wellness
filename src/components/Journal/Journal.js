@@ -1,10 +1,9 @@
 import React from 'react'
-import { Form, FormGroup, Label, Input, FormText, Button } from 'reactstrap'
+import { Form, FormGroup, Label, Input } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import * as image from '../../constants/images'
-import * as firebase from 'firebase'
-import Footer from '../Footer/Footer'
-import * as routes from '../../constants/routes'
+// import * as firebase from 'firebase'
+// import Footer from '../Footer/Footer'
+// import * as routes from '../../constants/routes'
 
 export default class Journal extends React.Component {
 

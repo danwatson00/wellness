@@ -7,22 +7,49 @@ import * as routes from '../../constants/routes';
 
 class Meds extends Component {
 
+    constructor(props) {
+        super(props)
+
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+        // this.addActivity = this.addActivity.bind(this)
+
+        //sets initial state of feeling
+        this.state = {
+
+        }
+
+        this.itemsArray = []
+    }
+
+    handleClick = (text, dosage, type) => {
+        this.setState({ meds: { text: text, dosage: dosage } }, () => {
+            console.log("meds", this.state.meds)
+            this.itemsArray.push(this.state.meds)
+            console.log("medsArray", this.itemsArray)
+        })
+    }
+
+
+    handleSubmit = () => {
+        localStorage.setItem('meds', JSON.stringify(this.itemsArray))
+    }
+
+
     render() {
 
-        const medsArray = Object.values(this.props.user.meds)
-        console.log("medsArray", medsArray)
-        const userMeds = medsArray.map((med) => (
-
-            <Button key={med} className="medsButton" outline color="light">{med.brand} - {med.dosage}</Button>
+        const itemsArray = Object.values(this.props.user.meds)
+        const userItems = itemsArray.map((item) => (
+            <Button key={item.text} onClick={() => this.handleClick(item.text)} className="bigButton" size="lg" outline color="light">{item.text}</Button>
         ))
 
         return (
             <div className="MedsDiv">
                 <h2>Select any Medication you have taken in the last 24 hours.</h2>
                 <div className="MedsCardsDiv">
-                    {userMeds}
+                {userItems}    
                 </div>
-                <Footer edit={this.props.user.meds} route={routes.EDIT_MEDS} next="journal" />
+                <Footer edit={this.props.user.meds} iconSubmitFunc={this.handleSubmit} route={routes.EDIT_MEDS} next="journal" />
             </div>
 
         );

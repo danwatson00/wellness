@@ -13,7 +13,6 @@ class IconSelect extends Component {
             [this.props.type]: {}
         }
     }
-
     
 
     handleSubmit = (type, text, icon) => {

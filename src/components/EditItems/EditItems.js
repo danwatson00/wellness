@@ -1,12 +1,12 @@
 import React from 'react'
-import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+// import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Button, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import './EditItems.css';
-import { rebase } from '../Base/Base.js';
+// import { rebase } from '../Base/Base.js';
 import * as firebase from 'firebase';
 
-import * as routes from '../../constants/routes';
+// import * as routes from '../../constants/routes';
 
 export default class EditItems extends React.Component {
 
@@ -24,7 +24,7 @@ export default class EditItems extends React.Component {
     handleRemove(objKey) {
         console.log("delete clicked", objKey)
         firebase.database().ref(`users/${this.props.uid}/${this.props.type}/${objKey}`).remove()
-        const userRef = firebase.database().ref().child(`${this.props.uid}`)
+        // const userRef = firebase.database().ref().child(`${this.props.uid}`)
         // console.log("editItems userRef", userRef)
         // const categoryRef = userRef.child(`${this.props.type}`)
         // console.log("editItems categoryRef", categoryRef)
@@ -78,7 +78,7 @@ export default class EditItems extends React.Component {
         
                 return (
                     <div key={item[0]} id={item[0]} className="iconEditCard">
-                        <img id={"img" + item[1].text} src={require(`../IconSelect/icons/${item[1].icon}.png`)} alt="icon" className="iconSelectIcon"></img>
+                        <img id={"img" + item[1].text} className="iconSelectIconDiv" src={require(`../IconSelect/icons/${item[1].icon}.png`)} alt="icon"></img>
                         <h4 id={"h4" + item[1].text}className="editItemH4">{item[1].text}</h4>
                         <Button key={item[1].text} onClick={() =>this.handleRemove(item[0])} circular inverted color='red' icon>
                             <Icon name='trash' />
@@ -86,17 +86,17 @@ export default class EditItems extends React.Component {
                         <Link className="editBtnLink" to={`/${this.props.type}/edit/item`}><Button circular inverted className="editBtn">Edit</Button></Link>
                     </div>
                 )
-            } else if (this.props.group === 'meds') { //only meds have dosage, so it will use this return
-                return (
-                    <div key={item[0]} id={item[0]} className="medsEditCard">
-                        <h4 className="editItemH4">{item[1].brand}</h4> 
-                        <h5 className="editItemH5">{item[1].dosage}</h5>
-                        <Button key={item[1].text} onClick={() => this.handleRemove(item[0])} circular inverted color='red' icon>
-                            <Icon name='trash' />
-                        </Button>
-                        <Link className="editBtnLink" to={`/${this.props.type}/edit/item`}><Button circular inverted className="editBtn">Edit</Button></Link>
-                    </div>
-                    )
+            // } else if (this.props.group === 'meds') { //only meds have dosage, so it will use this return
+            //     return (
+            //         <div key={item[0]} id={item[0]} className="medsEditCard">
+            //             <h4 className="editItemH4">{item[1].brand}</h4> 
+            //             <h5 className="editItemH5">{item[1].dosage}</h5>
+            //             <Button key={item[1].text} onClick={() => this.handleRemove(item[0])} circular inverted color='red' icon>
+            //                 <Icon name='trash' />
+            //             </Button>
+            //             <Link className="editBtnLink" to={`/${this.props.type}/edit/item`}><Button circular inverted className="editBtn">Edit</Button></Link>
+            //         </div>
+            //         )
             }else{ 
                 return (
                     <div key={item[0]} id={item[0]} className="wordEditCard">

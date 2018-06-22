@@ -1,0 +1,114 @@
+/* .entriesCard {
+    display: block;
+    margin:0 auto;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+} */
+
+.entriesCard {
+    display: grid;
+    margin:0 auto;
+    grid-template-rows: 90px auto auto auto auto;
+    grid-template-columns: 100px auto 100px;
+    background-color: white;
+    color: black;
+    width: 320px;
+    align-items: start;
+    align-content: start;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+.entryIcon {
+    grid-row: 1;
+    grid-column: 3;
+    width: 75px;
+    align-self: center;
+    justify-self: center;
+}
+
+.feelingDiv {
+    grid-row: 1;
+    grid-column: 1;
+    display: block;
+    text-align: left;
+
+}
+
+.introP {
+    color: darkgray;
+    text-align: left; 
+    margin-bottom: 0;  
+}
+
+.journalP {
+    color: black;
+    text-align: left; 
+    margin-bottom: 3px;
+    margin-top: 10px !important;
+
+}
+
+.cardH5 {
+    color: black;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.feelingDiv h3 {
+    text-align: left;
+    color: #19746E;
+    text-align: left;
+    font-size: 3em;
+    margin-top: 5px
+}
+
+.feelingH5 {
+    margin-bottom: 0 !important;
+}
+
+.exerciseDiv {
+    color: black;
+    display: inline;
+    grid-row: 2;
+    grid-column: 2;
+    border: 1px solid #229B97;
+    border-radius: 5px;
+    padding: 5px;
+    align-self: center;
+    justify-self: center;
+}
+
+.sleepDiv {
+    color: black;
+    /* display: inline; */
+    grid-row: 2;
+    grid-column: 1;
+    border: 1px solid #229B97;
+    border-radius: 5px;
+    padding: 5px;
+    /* align-self: center;
+    justify-self: center; */
+}
+
+.journalDiv {
+    color: black;
+    grid-row: 5;
+    grid-column: 1 /span 3;
+}
+
+.dietDiv {
+    color: black;
+    display: inline;
+    grid-row: 2;
+    grid-column: 3;
+    border: 1px solid #229B97;
+    border-radius: 5px;
+    padding: 5px;
+    align-self: center;
+    justify-self: center;
+}

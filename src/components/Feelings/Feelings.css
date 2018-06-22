@@ -2,12 +2,19 @@
     margin: 2px 20px 20px 20px !important;
     color: white;
     cursor: pointer;
+    text-align: center !important;
 }
 
 .feelingCard {
     cursor: pointer;
+    /* margin-top: 50px; */
+
 }
 
 .feelingIcon {
     max-width: 80px;
+}
+
+.feelingsDiv h2 {
+    text-align: center !important;
 }

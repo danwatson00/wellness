@@ -1,7 +1,8 @@
-.editItemH2, h2 {
+.editItemLabel {
     text-align: left !important;
     margin-bottom: 2px;
     margin-top: 30px;
+    font-size: 2em;
 }
 
 p {
@@ -13,15 +14,15 @@ form {
     margin: 0 15px 0 15px
 }
 
-.iconSelectFormGroup {
-    text-align: left;
-}
+
 
 .iconSelectIcon {
     min-height: 60px;
     min-width: 60px;
 }
 
-.iconRadioInput {
+/* .iconRadioInput {
     display: inline;
-}
+} */
+
+

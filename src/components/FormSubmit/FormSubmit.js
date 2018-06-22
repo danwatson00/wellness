@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import * as firebase from 'firebase'
 
 class FormSubmit extends Component {
@@ -19,19 +19,31 @@ class FormSubmit extends Component {
 
     formSubmit = () => {
         let answerObj = {}
-        answerObj.feeling = localStorage.getItem('feeling')
-        // answerObj.activities = localStorage.getItem('activities')
-        answerObj.exercise = localStorage.getItem('exercise')
+        answerObj.feeling = JSON.parse(localStorage.getItem('feeling'))
+        console.log("parsed feeling", answerObj.feeling)
+        answerObj.activities = localStorage.getItem('activities')
+        answerObj.exercise = JSON.parse(localStorage.getItem('exercise'))
         console.log("exercise", answerObj.exercise)
-        // answerObj.foods = localStorage.getItem('foods')
-        answerObj.diet = localStorage.getItem('diet')
-        answerObj.sleep = localStorage.getItem('sleep')
-        // answerObj.meds = localStorage.getItem('meds')
-        answerObj.journal = localStorage.getItem('journal')
+        answerObj.foods = localStorage.getItem('foods')
+        answerObj.diet = JSON.parse(localStorage.getItem('diet'))
+        answerObj.sleep = JSON.parse(localStorage.getItem('sleep'))
+        answerObj.meds = localStorage.getItem('meds')
+        answerObj.journal = JSON.parse(localStorage.getItem('journal'))
         console.log("answerObj", answerObj)
-        const formObj = JSON.parse(answerObj)
-        console.log("formObj", formObj)
-        firebase.database().ref(`users/${this.state.user.uid}/entries`).push(answerObj)
+        // const formObj = JSON.parse(answerObj)
+        // console.log("formObj", formObj)
+        firebase.database().ref(`users/${this.props.user.uid}/entries`).push(answerObj)
+        firebase.database().ref(`users/${this.props.uid}`).on('value', snap => {
+            console.log("submitForm snap", snap.val())
+            let theUser = { ...this.props.user }
+            theUser = snap.val()
+            console.log("theUser", theUser)
+            this.setState({
+                user: theUser
+            }
+            )
+            localStorage.setItem('user', JSON.stringify(theUser))
+        })
     }
 
 

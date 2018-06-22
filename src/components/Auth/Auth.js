@@ -28,12 +28,10 @@ export function buildUser(user) {
         },
         activities: user.activities || {
             working:{ "text": "Working", "icon": "happiness" },
-            cleaning:{ "text": "Cleaning", "icon": "happiness" },
             yoga:{ "text": "Yoga", "icon": "028-yoga" },
             exercising:{ "text": "Exercising", "icon": "040-strength" },
             mountainBiking:{ "text": "Mountain Climbing", "icon": "climbing-with-rope" },
             biking:{ "text": "Biking", "icon": "bicycle-rider" },
-            // { "text": "Hiking", "icon": "hiking" },
             camping:{ "text": "Camping", "icon": "camping" },
             bowling:{ "text": "Bowling", "icon": "bowling" },
             fishing:{ "text": "Fishing", "icon": "fishing-man" },
@@ -56,9 +54,14 @@ export function buildUser(user) {
             veryHighSleep: { "text": "8 - 10 hours", "level": "10"}
         },
         meds: user.meds || {
-            xanax:{ "text": "Xanax", "dosage": "0.25mg" },
-            alprazolam:{ "text": "Alprazolam", "dosage": "0.25mg" },
-            zoloft:{ "text": "Zoloft", "dosage": "25mg" }
+            xanax:{ "text": "Xanax" },
+            wellbutrin:{ "text": "Wellbutrin" },
+            zoloft:{ "text": "Zoloft" },
+            librium: { "text": "Librium" },
+            buspirone: { "text": "Buspirone" },
+            paxil: { "text": "Paxil" },
+            prozac: { "text": "Prozac" },
+            lexipro: { "text": "Lexipro" }
         },
         diet: user.diet || {
             veryHealthy:{"text":"Very Healthy", "level": "10"},

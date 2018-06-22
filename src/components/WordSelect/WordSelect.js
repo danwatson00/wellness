@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./WordSelect.css";
 import WordSelectButton from '../WordSelectButton/WordSelectButton';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Input } from 'reactstrap';
 
 
 class WordSelect extends Component {

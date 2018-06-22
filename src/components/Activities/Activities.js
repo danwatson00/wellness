@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Activities.css';
 import Footer from '../Footer/Footer';
-
+import { Button } from 'reactstrap';
 import * as routes from '../../constants/routes';
 
 class Activities extends Component {
@@ -9,34 +9,28 @@ class Activities extends Component {
     constructor(props) {
         super(props)
 
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleActivities = this.handleActivities.bind(this)
         this.handleClick = this.handleClick.bind(this)
 
-        //sets initial state of feeling
         this.state = {
 
         }
+
+        this.activitiesArray = []
     }
 
-    handleClick = (event, type, text, icon) => {
+    handleClick = (text, icon, type) => {
         this.setState({ activities: { text: text, icon: icon } }, () => {
             console.log("activities", this.state.activities)
-            const selections = Object.assign({}, this.state.selections)
-            console.log("event", selections)
-            // selections[[type].target.id]
-            this.setState({selections }, () => {
-                console.log("da state", this.state)
-            })
+            this.activitiesArray.push(this.state.activities)
+            console.log("activitiesArray", this.activitiesArray)
+            
         })
     }
 
 
-    handleSubmit = (text, icon) => {
-        this.setState({ activities: { text: text, icon: icon } }, () => {
-            let userAnswer = this.state.selections
-            console.log("log", userAnswer)
-            this.props.buildFormObj(userAnswer)
-        })
+    handleActivities = () => {
+        localStorage.setItem('activities', JSON.stringify(this.activitiesArray))
     }
 
     render() {
@@ -53,7 +47,7 @@ class Activities extends Component {
             <div className="activitiesDiv">
                 <h2>What have you been up to today?</h2>
                 {userItems}
-                <Footer route='/activities/edit' edit={this.props.user.activites} route={routes.EDIT_ACTIVITIES} next="exercise" />
+                <Footer edit={this.props.user.activites} iconSubmitFunc={this.handleActivities} route={routes.EDIT_ACTIVITIES} next="exercise" />
             </div>
         );
 

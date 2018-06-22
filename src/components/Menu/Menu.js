@@ -1,8 +1,8 @@
 import React from 'react';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import hamburger from '../../img/hamburger.png';
+// import hamburger from '../../img/hamburger.png';
 import menu from '../../img/circleMenu.png';
-import { Button, Icon } from 'semantic-ui-react';
+// import { Button, Icon } from 'semantic-ui-react';
 import './Menu.css';
 import { Link } from 'react-router-dom';
 

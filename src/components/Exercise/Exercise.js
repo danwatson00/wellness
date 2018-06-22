@@ -33,9 +33,9 @@ class Exercise extends Component {
         ))
 
         return (
-            <div className="exerciseDiv">
-                <h3>In the last 24 hours...</h3>
-                <h3>How physically active have you been?</h3>
+            <div className="exerciseBtnDiv">
+                <h3 className="24H3">In the last 24 hours...</h3>
+                <h3 className="howH3">How physically active have you been?</h3>
                 {userItems}
                 <Footer edit={this.props.user.exercise} type='exercise' answer={this.state.exercise} route={routes.EDIT_EXERCISE} next="sleep" />
             </div>

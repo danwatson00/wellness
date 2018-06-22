@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import './App.css';
-import Main from './components/Main/Main';
-// import Header from './components/Header/Header';
+import React, { Component } from 'react'
+import './App.css'
+import Main from './components/Main/Main'
+// import Copyright from './components/Copyright/Copyright'
+// import Header from './components/Header/Header'
 
 class App extends Component {
   

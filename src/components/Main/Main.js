@@ -19,12 +19,12 @@ import { Button } from 'semantic-ui-react'
 import Journal from '../Journal/Journal'
 import EditItems from '../EditItems/EditItems'
 import EditItem from '../EditItem/EditItem'
-import Time from '../Time/Time'
+// import Time from '../Time/Time'
 import AddItem from '../AddItem/AddItem'
 import FormSubmit from '../FormSubmit/FormSubmit'
 import Entries from '../Entries/Entries'
 import * as firebase from 'firebase'
-import * as image from '../../constants/images'
+// import * as image from '../../constants/images'
 import * as routes from '../../constants/routes'
 
 class Main extends Component {
@@ -190,7 +190,7 @@ class Main extends Component {
                 journal: "Lorem ipsum"
         }
 
-        firebase.database().ref(`users/${this.state.user.uid}/userEntries`).push(formObj)
+        firebase.database().ref(`users/${this.state.user.uid}/entries`).push(formObj)
     }
 
     // deleteForm(objKey) {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import './Home.css';
 import { Link } from 'react-router-dom';
+import logo from '../../img/logo.png'
 
 // import * as routes from '../../constants/routes';
 
@@ -26,12 +27,11 @@ class Home extends Component {
         render(){
             console.log("user obj", this.state.user)
             return( 
-                <div>
+                <div className="home">
                     <div className="welcomeHeading">
-                        <h1>Hello, {this.state.user.name}!</h1>
-                        <h2>Welcome to your Wellness Tracker</h2>
+                        <h1 className="welcomeH1">Hello, {this.state.user.name}!</h1>
                     </div>
-                    <p>Create an entry or view past entries by clicking on the buttons below.</p>
+                    <p className="homeIntro">Create an entry or view past entries by clicking on the buttons below.</p>
                     <Link to={`/feelings`} className="feelingsLink"><Button className="btn-lg createEntryBtn" outline color="light">Create An Entry</Button></Link>
                     <Button className="btn-lg pastEntriesBtn" outline color="light">View Past Entries</Button>
                     
