@@ -20,6 +20,7 @@ export function buildUser(user) {
         uid: user.uid,
         name: user.displayName,
         photoURL: user.photoURL,
+        entries: user.entries || {},
         feelings: user.feelings || {
             happy:{ "text": "Happy", "level": "10", "icon": "happiness", "id": "happy" },
             meh:{ "text": "Meh..", "level": "5", "icon": "013-meh", "id": "meh" },
@@ -27,17 +28,17 @@ export function buildUser(user) {
         },
         activities: user.activities || {
             working:{ "text": "Working", "icon": "happiness" },
-            cleaning:{ "text": "Cleaning", "icon": "happiness" },
             yoga:{ "text": "Yoga", "icon": "028-yoga" },
             exercising:{ "text": "Exercising", "icon": "040-strength" },
             mountainBiking:{ "text": "Mountain Climbing", "icon": "climbing-with-rope" },
             biking:{ "text": "Biking", "icon": "bicycle-rider" },
-            // { "text": "Hiking", "icon": "hiking" },
             camping:{ "text": "Camping", "icon": "camping" },
             bowling:{ "text": "Bowling", "icon": "bowling" },
             fishing:{ "text": "Fishing", "icon": "fishing-man" },
             cleaning:{ "text": "Cleaning", "icon": "cleaning" },
             photography:{ "text": "Photography", "icon": "038-camera" },
+            onPhone:{"text": "Talking on Phone", "icon": "014-call"},
+            guitar:{"text": "Playing Guitar", "icon": "017-guitar"}
         },
         descriptives: user.descriptives || {
             excited: { "text":"Excited", "level":"9" },
@@ -53,9 +54,14 @@ export function buildUser(user) {
             veryHighSleep: { "text": "8 - 10 hours", "level": "10"}
         },
         meds: user.meds || {
-            xanax:{ "text": "Xanax", "dosage": "0.25mg" },
-            alprazolam:{ "text": "Alprazolam", "dosage": "0.25mg" },
-            zoloft:{ "text": "Zoloft", "dosage": "25mg" }
+            xanax:{ "text": "Xanax" },
+            wellbutrin:{ "text": "Wellbutrin" },
+            zoloft:{ "text": "Zoloft" },
+            librium: { "text": "Librium" },
+            buspirone: { "text": "Buspirone" },
+            paxil: { "text": "Paxil" },
+            prozac: { "text": "Prozac" },
+            lexipro: { "text": "Lexipro" }
         },
         diet: user.diet || {
             veryHealthy:{"text":"Very Healthy", "level": "10"},
@@ -74,7 +80,8 @@ export function buildUser(user) {
             rice:{ "text": "Rice", "icon": "rice" },
             salad:{ "text": "Salad", "icon": "salad" },
             baconEggs:{ "text": "Bacon and Eggs", "icon": "032-egg-and-bacon" },
-            beer:{ "text": "Beer", "icon": "039-beer" }
+            beer:{ "text": "Beer", "icon": "039-beer" },
+            sandwich:{"text": "Sandwich", "icon": "013-sandwich"}
         },
         exercise: user.exercise || {
             veryActive:{"text":"Very Active", "level": "10" },

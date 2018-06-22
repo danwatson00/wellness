@@ -4,12 +4,30 @@
     max-width: 80px;
 }
 
+.welcomeHeading h1 {
+    margin-top: 20px;
+}
+
 .welcomeHeading h1, .welcomeHeading h2 {
     color: white !important;
+    text-align: center !important;
 }
 
 .pastEntriesBtn, .createEntryBtn {
     display: block !important;
     margin: 20px auto;
+}
+
+.home {
+    margin: 5px;
+}
+
+.homeIntro {
+    text-align: center !important;
+    margin: 15px 5px 15px 5px;
+}
+
+.welcomeH1 {
+    margin-top: 25px;
 }
 

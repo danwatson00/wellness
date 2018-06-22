@@ -10,30 +10,30 @@ class IconSelect extends Component {
 
         //sets initial state of feeling
         this.state = {
-            stuff: {}
+            [this.props.type]: {}
         }
     }
+    
 
-    handleSubmit = (text, level, icon) => {
-        const currentObj = localStorage.getItem(`${this.props.type}`)
-        const userObj = JSON.parse(currentObj)
-        this.setState({ feeling: { text: text, level: level, icon: icon } })
-        let answerObj = {
-            feeling: this.state.feeling
-        }
-        console.log("answerObj", answerObj)
-        localStorage.setItem('answerObj', answerObj);
+    handleSubmit = (type, text, icon) => {
+        this.setState({ [type]:{ text: text, icon: icon } }, () => {
+            let userAnswer = this.state
+            console.log("log", userAnswer)
+            this.props.buildFormObj(userAnswer)
+        })
+    }
 
-        // console.log("clickity", this.state.entry.feeling)
+    handleClick = () => {
+
     }
 
     render() {
 
-        const itemsArray = Object.values(this.props.items)
+        const itemsArray = Object.entries(this.props.items)
         const userItems = itemsArray.map((item) => (
-            <div key={item.text} className="iconSelectCard ">
-                <img src={require(`./icons/${item.icon}.png`)} alt="icon" className="iconSelectIcon"></img>
-                <h3 className="">{item.text}</h3>
+            <div key={item[1].text} onClick={() => this.handleActivitiesSubmit(this.props.type, item[1].text, item[1].icon)} className="iconSelectCard ">
+                <img src={require(`./icons/${item[1].icon}.png`)} alt="icon" className="iconSelectIcon"></img>
+                <h3 className="iconSelectH3">{item[1].text}</h3>
             </div>
         ))
 

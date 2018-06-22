@@ -10,10 +10,10 @@ class BigButtonSelect extends Component {
         console.log("wordSel props", this.props.items)
         const itemsArray = Object.values(this.props.items)
         const userItems = itemsArray.map((item) => (
-
             <Button key={item.text} className="bigButton" size="lg" outline color="light">{item.text}</Button>
         ))
-
+    
+        
         return (
 
             <div className="bigButtonCardsDiv">

@@ -24,9 +24,10 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.iconSelectIcon {
+.iconSelectIconDiv {
     grid-column: 1;
-    max-height: 30px;
+    width: 40px !important;
+    height: 40px !important;
 }
 
 .editItemH4 {
@@ -41,6 +42,7 @@
 
 .editBtn {
     grid-column: 4;
+    margin: 0 !important;
 }
 
 .addNewBtn {
@@ -49,6 +51,7 @@
 
 .editItemsIntro {
     margin-bottom: 30px;
+    text-align: center !important;
 }
 
 

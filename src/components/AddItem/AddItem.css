@@ -1,0 +1,34 @@
+.addHeading {
+    padding-bottom: 30px;
+}
+
+#addItem {
+    width: 100px;
+}
+
+.formGroup {
+    margin-bottom: 50px;
+}
+
+.iconSelectBtns {
+    display: inline;
+}
+
+/* .iconRadioDiv {
+    padding: 20px;
+    margin-top: 20px;
+} */
+
+.addH2 {
+    padding: 20px;
+}
+
+.form-check {
+    display: inline !important;
+}
+
+
+.form-check-label {
+    margin: 10px;
+    margin-bottom: 10px;
+}
